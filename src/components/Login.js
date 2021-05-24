@@ -31,12 +31,8 @@ const Login = () => {
           .catch(err=>{
         console.log(err);
       });
-      // if (userLogin.username === "" || userLogin.password  === "") {
-      //   return "Username or Password not valid"
-      //  }
     };
 
-  const error = ((userLogin.username === "") || (userLogin.password === "")) &&  "Username or Password not valid" 
 
   return (
     <div>
@@ -67,8 +63,6 @@ const Login = () => {
         </form>
 
       </div>
-
-      <p data-testid="errorMessage" className="error">{error}</p>
     </div>
   );
 };
