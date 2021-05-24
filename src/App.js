@@ -9,7 +9,6 @@ import Dashboard from './components/Dashboard'
 function App() {
   return (
     <div className="App">
-      <h1>This is the Splash Page.</h1>
       <Switch>
         <Route exact path='/' component={Splash} />
         <Route exact path='/login' component={Login} />
