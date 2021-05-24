@@ -7,6 +7,7 @@ export default function Splash() {
       <h1>Secret Recipes</h1>
       <Link to="/signup">Sign Up</Link>
       <Link to="/login">Login</Link>
+      <Link to="/recipes">Recipes</Link>
     </div>
   )
 }
