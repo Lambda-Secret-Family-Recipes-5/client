@@ -13,9 +13,58 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderButtons = styled.div`
-  width: 25%;
+  width: 35%;
   display: flex;
   justify-content: space-between;
+`;
+
+const HeaderLink = styled(Link)`
+  font-family: "Courier";
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.7rem;
+  background: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+  color: black;
+  margin-bottom: 3%;
+  box-shadow: 3px 2px 5px #5c5b59;
+  &:hover {
+    background: black;
+    color: #f6fbfb;
+    box-shadow: 0 0 0 white;
+    border-radius: 5px;
+  }
+  @media (max-width: 800px){
+    width: 25%;
+    font-size: 1.1rem;
+  }
+`;
+
+const HeaderButton = styled.button`
+  font-family: "Courier";
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.7rem;
+  background: white;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  border-radius: 3px;
+  color: black;
+  margin-bottom: 3%;
+  box-shadow: 3px 2px 5px #5c5b59;
+  &:hover {
+    background: black;
+    color: #f6fbfb;
+    box-shadow: 0 0 0 white;
+    border-radius: 5px;
+  }
+  @media (max-width: 800px){
+    width: 25%;
+    font-size: 1.1rem;
+  }
 `;
 
 export default function Header({searchTerm}){
@@ -27,8 +76,8 @@ export default function Header({searchTerm}){
     <HeaderContainer>
       <Search searchTerm={searchTerm}/>
       <HeaderButtons>
-        <Link to="/add-recipe">Add Recipe</Link>
-        <button onClick={signOut}>Sign Out</button>
+        <HeaderLink to="/add-recipe">Add Recipe</HeaderLink>
+        <HeaderButton onClick={signOut}>Sign Out</HeaderButton>
       </HeaderButtons>
     </HeaderContainer>
   );
