@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import Header from './Header';
 import Recipe from './Recipe';
 import styled from "styled-components";
+import bgImage from "../Assets/ball-park.jpg";
 
 const DashMain = styled.main`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 1rem 0;
+  background-image: url(${bgImage});
+  background-size: cover;
 `;
 
 const testingData = [
