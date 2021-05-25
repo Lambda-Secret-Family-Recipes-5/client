@@ -23,7 +23,7 @@ export default function Signup(props) {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(true)
-
+  
   const handleChange = e => {
     yup.reach(formSchema, e.target.name)
       .validate(e.target.value)
@@ -41,7 +41,29 @@ export default function Signup(props) {
   }
 
   useEffect(() => {
-    formSchema.isValid(formValues).then(valid => setDisabled(!valid))
+    formSchema.isValid(formValues).then(valid => {
+      const { email, confirmEmail, password, confirmPass } = formValues
+
+      if(email !== confirmEmail && confirmEmail !== '') {
+        setFormErrors({
+          ...formErrors,
+          confirmEmail: 'Emails must match'
+        })
+      }
+      
+      if(password !== confirmPass && confirmPass !== '') {
+        setFormErrors({
+          ...formErrors,
+          confirmPass: 'Passwords must match'
+        })
+      }
+
+      setDisabled(
+        !valid ||
+        email !== confirmEmail ||
+        password !== confirmPass
+      )
+    })
   }, [formValues])
 
   const handleSubmit = e => {
@@ -53,7 +75,7 @@ export default function Signup(props) {
       password: formValues.password.trim(),
     }
 
-    axios.post('/auth/register', newUser)
+    axios.post('https://secret-family-recipes-5.herokuapp.com/auth/register', newUser)
       .then( res => {
         console.log(res)
         props.history.push('/login')
@@ -88,7 +110,7 @@ export default function Signup(props) {
         </label>
         <p className='errors'>{formErrors.email}</p>
 
-        {/* <label>Confirm Email:
+        <label>Confirm Email:
           <input
             type='email'
             name='confirmEmail'
@@ -96,7 +118,7 @@ export default function Signup(props) {
             value={formValues.confirmEmail}
           />
         </label>
-        <p className='errors'>{formErrors.confirmEmail}</p> */}
+        <p className='errors'>{formErrors.confirmEmail}</p>
 
         <label>Enter Password:
           <input
@@ -108,7 +130,7 @@ export default function Signup(props) {
         </label>
         <p className='errors'>{formErrors.password}</p>
 
-        {/* <label>Confirm Password:
+        <label>Confirm Password:
           <input
             type='password'
             name='confirmPass'
@@ -116,7 +138,7 @@ export default function Signup(props) {
             value={formValues.confirmPass}
           />
         </label>
-        <p className='errors'>{formErrors.confirmPass}</p> */}
+        <p className='errors'>{formErrors.confirmPass}</p>
 
         <button disabled={disabled}>Register!</button>
       </form>
