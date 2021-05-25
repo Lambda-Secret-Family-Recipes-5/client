@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
+import * as yup from 'yup'
+import formSchema from '../utils/formSchema'
 
-const initialState = {
+const initialFormValues = {
+  username: '',
+  email: '',
+  confirmEmail: '',
+  password: '',
+  confirmPass: '',
+}
+
+const initialFormErrors = {
   username: '',
   email: '',
   confirmEmail: '',
@@ -9,11 +19,13 @@ const initialState = {
 }
 
 export default function Signup(props) {
-  const [state, setState] = useState(initialState)
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(true)
 
   const handleChange = e => {
-    setState({
-      ...state,
+    setFormValues({
+      ...formValues,
       [e.target.name]: e.target.value,
     })
   }
@@ -34,46 +46,52 @@ export default function Signup(props) {
             type='text'
             name='username'
             onChange={handleChange}
-            value={state.username}
+            value={formValues.username}
           />
         </label>
+        <p className='errors'>{formErrors.username}</p>
 
         <label>Enter Email:
           <input
             type='email'
             name='email'
             onChange={handleChange}
-            value={state.email}
+            value={formValues.email}
           />
         </label>
+        <p className='errors'>{formErrors.email}</p>
 
         <label>Confirm Email:
           <input
             type='email'
             name='confirmEmail'
             onChange={handleChange}
-            value={state.confirmEmail}
+            value={formValues.confirmEmail}
           />
         </label>
+        <p className='errors'>{formErrors.confirmEmail}</p>
 
         <label>Enter Password:
           <input
             type='password'
             name='password'
             onChange={handleChange}
-            value={state.password}
+            value={formValues.password}
           />
         </label>
+        <p className='errors'>{formErrors.password}</p>
 
         <label>Confirm Password:
           <input
             type='password'
             name='confirmPass'
             onChange={handleChange}
-            value={state.confirmPass}
+            value={formValues.confirmPass}
           />
         </label>
-        <button>Register!</button>
+        <p className='errors'>{formErrors.confirmPass}</p>
+
+        <button disabled={disabled}>Register!</button>
       </form>
     </div>
   )
