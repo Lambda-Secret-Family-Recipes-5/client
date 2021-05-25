@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import * as yup from 'yup'
 import formSchema from '../utils/formSchema'
 
@@ -39,16 +40,33 @@ export default function Signup(props) {
     })
   }
 
+  useEffect(() => {
+    formSchema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
+
   const handleSubmit = e => {
     e.preventDefault()
 
-    console.log('submitted')
-    props.history.push('/recipes')
+    const newUser = {
+      username: formValues.username.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+    }
+
+    axios.post('/auth/register', newUser)
+      .then( res => {
+        console.log(res)
+        props.history.push('/login')
+      })
+      .catch( err => {
+        console.log(err)
+      })
   }
 
   return (
     <div className='signup'>
       <h2>Sign Up... It's easy!</h2>
+
       <form onSubmit={handleSubmit} >
         <label>Enter Username:
           <input
@@ -70,7 +88,7 @@ export default function Signup(props) {
         </label>
         <p className='errors'>{formErrors.email}</p>
 
-        <label>Confirm Email:
+        {/* <label>Confirm Email:
           <input
             type='email'
             name='confirmEmail'
@@ -78,7 +96,7 @@ export default function Signup(props) {
             value={formValues.confirmEmail}
           />
         </label>
-        <p className='errors'>{formErrors.confirmEmail}</p>
+        <p className='errors'>{formErrors.confirmEmail}</p> */}
 
         <label>Enter Password:
           <input
@@ -90,7 +108,7 @@ export default function Signup(props) {
         </label>
         <p className='errors'>{formErrors.password}</p>
 
-        <label>Confirm Password:
+        {/* <label>Confirm Password:
           <input
             type='password'
             name='confirmPass'
@@ -98,7 +116,7 @@ export default function Signup(props) {
             value={formValues.confirmPass}
           />
         </label>
-        <p className='errors'>{formErrors.confirmPass}</p>
+        <p className='errors'>{formErrors.confirmPass}</p> */}
 
         <button disabled={disabled}>Register!</button>
       </form>
