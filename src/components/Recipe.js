@@ -3,10 +3,33 @@ import EditRecipe from "./EditRecipe";
 import styled from "styled-components";
 
 const RecipeCard = styled.div`
-  background: #fdfaf6;
+  background: #fbfaf6;
   width: 30%;
   border-radius: 5px;
   padding: 1rem;
+  font-family: "Courier";
+`;
+
+const RecipeTitle = styled.h4`
+  margin: 0;
+  font-family: serif;
+`;
+
+const EditButton = styled.button`
+  background: white;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 3px 2px 5px #5c5b59;
+  color: black;
+  font-family: courier;
+  font-weight: 600;
+  padding: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background: black;
+    box-shadow: 0 0 0 white;
+    color: #fdfaf6;
+  }
 `;
 
 export default function Recipe({category, ingredients, instructions, source, title}) {
@@ -22,7 +45,7 @@ export default function Recipe({category, ingredients, instructions, source, tit
       <EditRecipe finishEditing={editRecipe} category={category} ingredients={ingredients} instructions={instructions} source={source} title={title} /> :
     (
       <div className="recipe-container">
-        <h4>{title}</h4>
+        <RecipeTitle>{title}</RecipeTitle>
         <ul>
           {
             category.map(cat => {
@@ -43,7 +66,7 @@ export default function Recipe({category, ingredients, instructions, source, tit
         </ul>
         <p>{instructions}</p>
         <p>{source}</p>
-        <button onClick={editRecipe}>Edit Recipe</button>
+        <EditButton onClick={editRecipe}>Edit Recipe</EditButton>
       </div>
     )}
     </RecipeCard>

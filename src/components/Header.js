@@ -32,7 +32,7 @@ const HeaderLink = styled(Link)`
   box-shadow: 3px 2px 5px #5c5b59;
   &:hover {
     background: black;
-    color: #f6fbfb;
+    color: #fdfaf6;
     box-shadow: 0 0 0 white;
     border-radius: 5px;
   }
@@ -55,9 +55,10 @@ const HeaderButton = styled.button`
   color: black;
   margin-bottom: 3%;
   box-shadow: 3px 2px 5px #5c5b59;
+  cursor: pointer;
   &:hover {
     background: black;
-    color: #f6fbfb;
+    color: #fdfaf6;
     box-shadow: 0 0 0 white;
     border-radius: 5px;
   }
