@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const RecipeCard = styled.div`
   background: #fdfaf6;
-  width: 30%;
+  width: 28%;
   border-radius: 5px;
   padding: 1rem;
   font-family: "Courier";

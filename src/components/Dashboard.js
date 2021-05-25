@@ -4,12 +4,31 @@ import Recipe from './Recipe';
 import styled from "styled-components";
 
 const DashMain = styled.main`
-  background:red;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1rem 0;
 `;
 
 const testingData = [
   {
     key: 0,
+    category: ["asdf"],
+    ingredients: ["chives"],
+    instructions: "asdfjk;asdflk asdfkja asdfjlk",
+    source: " adfkjasdlfjk adf jlkasdflasd j",
+    title: "A Chicken"
+  },
+  {
+    key: 1,
+    category: ["asdf"],
+    ingredients: ["chives"],
+    instructions: "asdfjk;asdflk asdfkja asdfjlk",
+    source: " adfkjasdlfjk adf jlkasdflasd j",
+    title: "A Chicken"
+  },
+  {
+    key: 2,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",
