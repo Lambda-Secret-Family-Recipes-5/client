@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import Header from './Header';
 import Recipe from './Recipe';
-import styled from "styled-components";
 import bgImage from "../Assets/ball-park.jpg";
+
+const DashContainer = styled.div`
+  background-image: url(${bgImage});
+  background-size: cover;
+  height: 100vh;
+`;
 
 const DashMain = styled.main`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 1rem 0;
-  background-image: url(${bgImage});
-  background-size: cover;
 `;
 
 const testingData = [
@@ -56,7 +59,7 @@ export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className='dashboard'>
+    <DashContainer className='dashboard'>
       <Header searchTerm={searchTerm}/>
       <DashMain>
       {
@@ -73,6 +76,6 @@ export default function Dashboard() {
         })
       }
       </DashMain>
-    </div>
+    </DashContainer>
   );
 }
