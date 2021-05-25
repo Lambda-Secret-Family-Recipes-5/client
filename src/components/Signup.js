@@ -24,6 +24,15 @@ export default function Signup(props) {
   const [disabled, setDisabled] = useState(true)
 
   const handleChange = e => {
+    yup.reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then( () => {
+        setFormErrors({ ...formErrors, [e.target.name]: '' })
+      })
+      .catch( err => {
+        setFormErrors({ ...formErrors, [e.target.name]: err.errors[0] })
+      })
+      
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
