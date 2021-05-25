@@ -9,11 +9,10 @@ const HeaderContainer = styled.header`
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  padding: 2% 0;
+  padding: 1% 0;
 `;
 
 const HeaderButtons = styled.div`
-  background: green;
   width: 25%;
   display: flex;
   justify-content: space-between;
