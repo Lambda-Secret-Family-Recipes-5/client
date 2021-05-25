@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import styled from "styled-components";
 import bgImage from "../Assets/ball-park.jpg";
 import logo from "../Assets/Logo.png";
+
+import Login from './Login'
+import Signup from './Signup'
 
 const SplashContainer = styled.div`
   background-image: url(${bgImage});
@@ -79,10 +82,16 @@ export default function Splash() {
       <SplashCard>
         <SplashLogo src={logo}/>
         <SplashHeadline>Secret Recipes</SplashHeadline>
-        <LinkContainer>
-          <SplashLink to="/signup">Sign Up</SplashLink>
-          <SplashLink to="/login">Login</SplashLink>
-        </LinkContainer>
+          <Switch>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
+            <Route path='/'>
+              <LinkContainer>
+                <SplashLink to="/signup">Sign Up</SplashLink>
+                <SplashLink to="/login">Login</SplashLink>
+              </LinkContainer>
+            </Route>
+          </Switch>
       </SplashCard>
     </SplashContainer>
   );
