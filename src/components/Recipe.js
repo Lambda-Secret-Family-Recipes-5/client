@@ -50,7 +50,7 @@ const RecipeFieldTitle = styled.p`
 `;
 
 const RecipeFieldText = styled.p`
-  margin: 0 0 1rem 1rem;
+  margin: 0 0 1rem 0.5rem;
 `;
 
 export default function Recipe({category, ingredients, instructions, source, title}) {
