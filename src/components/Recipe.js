@@ -3,7 +3,7 @@ import EditRecipe from "./EditRecipe";
 import styled from "styled-components";
 
 const RecipeCard = styled.div`
-  background: #fbfaf6;
+  background: #fdfaf6;
   width: 30%;
   border-radius: 5px;
   padding: 1rem;
@@ -32,6 +32,27 @@ const EditButton = styled.button`
   }
 `;
 
+const RecipeList = styled.ul`
+  padding: 0;
+  &>li {
+    list-style-type: none;
+    margin-left: 0.5rem;
+  }
+  &>li.list-title {
+    margin-left: 0;
+    font-weight: 600;
+  }
+`;
+
+const RecipeFieldTitle = styled.p`
+  font-weight: 600;
+  margin: 0
+`;
+
+const RecipeFieldText = styled.p`
+  margin: 0 0 1rem 1rem;
+`;
+
 export default function Recipe({category, ingredients, instructions, source, title}) {
   const [editing, setEditing] = useState(false);
 
@@ -46,7 +67,8 @@ export default function Recipe({category, ingredients, instructions, source, tit
     (
       <div className="recipe-container">
         <RecipeTitle>{title}</RecipeTitle>
-        <ul>
+        <RecipeList>
+          <li className="list-title">Categories:</li>
           {
             category.map(cat => {
               return (
@@ -54,8 +76,9 @@ export default function Recipe({category, ingredients, instructions, source, tit
               );
             })
           }
-        </ul>
-        <ul>
+        </RecipeList>
+        <RecipeList>
+          <li className="list-title">Ingredients:</li>
           {
             ingredients.map(ingredient => {
               return (
@@ -63,9 +86,11 @@ export default function Recipe({category, ingredients, instructions, source, tit
               );
             })
           }
-        </ul>
-        <p>{instructions}</p>
-        <p>{source}</p>
+        </RecipeList>
+        <RecipeFieldTitle>Instructions: </RecipeFieldTitle>
+        <RecipeFieldText>{instructions}</RecipeFieldText>
+        <RecipeFieldTitle>Source: </RecipeFieldTitle>
+        <RecipeFieldText>{source}</RecipeFieldText>
         <EditButton onClick={editRecipe}>Edit Recipe</EditButton>
       </div>
     )}
