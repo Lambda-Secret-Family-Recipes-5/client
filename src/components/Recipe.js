@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import EditRecipe from "./EditRecipe";
+import styled from "styled-components";
+
+const RecipeCard = styled.div`
+  background: #fdfaf6;
+  width: 30%;
+  border-radius: 5px;
+  padding: 1rem;
+`;
 
 export default function Recipe({category, ingredients, instructions, source, title}) {
   const [editing, setEditing] = useState(false);
@@ -9,7 +17,8 @@ export default function Recipe({category, ingredients, instructions, source, tit
   };
 
   return (
-    editing ?
+    <RecipeCard>
+      {editing ?
       <EditRecipe finishEditing={editRecipe} category={category} ingredients={ingredients} instructions={instructions} source={source} title={title} /> :
     (
       <div className="recipe-container">
@@ -36,6 +45,7 @@ export default function Recipe({category, ingredients, instructions, source, tit
         <p>{source}</p>
         <button onClick={editRecipe}>Edit Recipe</button>
       </div>
-    )
+    )}
+    </RecipeCard>
   );
 };

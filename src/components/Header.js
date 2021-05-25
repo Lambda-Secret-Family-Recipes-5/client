@@ -76,7 +76,7 @@ export default function Header({searchTerm}){
     <HeaderContainer>
       <Search searchTerm={searchTerm}/>
       <HeaderButtons>
-        <HeaderLink to="/add-recipe">Add Recipe</HeaderLink>
+        <HeaderLink to="/addrecipe">Add Recipe</HeaderLink>
         <HeaderButton onClick={signOut}>Sign Out</HeaderButton>
       </HeaderButtons>
     </HeaderContainer>
