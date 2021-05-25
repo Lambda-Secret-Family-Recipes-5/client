@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import styled from "styled-components";
 import Header from './Header';
 import Recipe from './Recipe';
+
+
 
 export default function Dashboard() {
   const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // useEffect(() => {
-  //   axios.get("BACK-END-URL")
-  //     .then(res => {
-  //       setRecipes(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <div className='dashboard'>

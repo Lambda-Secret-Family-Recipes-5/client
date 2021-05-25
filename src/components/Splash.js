@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import bgImage from "../Assets/brandi-redd.jpg";
+import bgImage from "../Assets/ball-park.jpg";
+import logo from "../Assets/Logo.png";
 
 const SplashContainer = styled.div`
   background-image: url(${bgImage});
@@ -16,12 +17,12 @@ const SplashContainer = styled.div`
 const SplashCard = styled.div`
   background: #eff3f1;
   padding: 0 5%;
-  box-shadow: 8px 7px 7px #13250f;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 `;
 
 const SplashHeadline = styled.h1`
@@ -68,15 +69,19 @@ const SplashLink = styled(Link)`
   }
 `;
 
+const SplashLogo = styled.img`
+  width: 10%;
+`;
+
 export default function Splash() {
   return (
     <SplashContainer className='splash' role="img" aria-label="A background image of askew papers by Brandi Redd">
       <SplashCard>
+        <SplashLogo src={logo}/>
         <SplashHeadline>Secret Recipes</SplashHeadline>
         <LinkContainer>
           <SplashLink to="/signup">Sign Up</SplashLink>
           <SplashLink to="/login">Login</SplashLink>
-          <SplashLink to="/recipes">Recipes</SplashLink>
         </LinkContainer>
       </SplashCard>
     </SplashContainer>
