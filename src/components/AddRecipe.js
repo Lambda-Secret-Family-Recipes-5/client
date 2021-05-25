@@ -1,10 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-import axios from 'axios';
+import styled from 'styled-components';
+import { axiosWithAuth} from '../utils/axiosWithAuth'
 
 const AddRecipe = (props) => {
+
+    const StyledAddRecipe = styled.div`
+        form {
+        border: 1px solid #999;
+        padding: 0.25em;
+        background-color: #fdfaf6;
+        width: 35%;
+        margin: auto;
+        }
+        input, textarea{
+        height: 5vh;
+        margin: 1% 0;
+        text-align: left;
+        width: 20em;
+        }
+        label{
+        float: left;
+	    width: 8em;
+	    text-align: left;
+        align-items: center;
+        padding-top: 4%;
+	    padding-right: 0.5em;
+        font-size: 1.2rem;
+        margin: 0 0%;
+        }
+        button{
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 15px;
+        margin: 16px;
+}
+    `
 	const { push } = useHistory();
 	const { id } = useParams();
 
@@ -17,7 +50,7 @@ const AddRecipe = (props) => {
 	});
 	
 	useEffect(()=>{
-        axios.post(`/${id}`)
+        axiosWithAuth().post(`recipes/${id}`)
             .then(res=>{
                 setRecipe(res.data);
             })
@@ -35,7 +68,7 @@ const AddRecipe = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-    	axios.post(``, recipe)
+    	axiosWithAuth().post(`recipes`, recipe)
       .then(res=>{
        setRecipe(res.data);
        console.log(res.data)
@@ -49,11 +82,11 @@ const AddRecipe = (props) => {
 	const { title, source, ingredients, instructions, category } = recipe;
 
     return (
-	<div>
+	<StyledAddRecipe>
 		<div>
 			<form onSubmit={handleSubmit}>
 				<div>						
-					<h4>Adding New Recipe <strong>{recipe.title}</strong></h4>
+					<h1>Adding New Recipe <strong>{recipe.title}</strong></h1>
 				</div>
 				<div>					
 					<div>
@@ -74,17 +107,18 @@ const AddRecipe = (props) => {
 					</div>		
 					<div>
 						<label>Category</label>
-						<input value={category} onChange={handleChange} name="category" type="text" ></input>
-					</div>
-									
+						<input value={category} onChange={handleChange} name="category" type="text" />
+					</div>			
 				</div>
+                <br/>
 				<div>			    
-					<input type="submit" value="Save"/>
-					<Link to={`/recipes/`}><input type="button"  value="Cancel"/></Link>
+					<button type="submit" value="Save">Submit</button>
+					<Link to={`/recipes/`}><button type="button"  value="Cancel"> Cancel </button></Link>
 				</div>
 			</form>
 		</div>
-	</div>);
+	</StyledAddRecipe>
+    );
 }
 
 export default AddRecipe;
