@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import styled from "styled-components";
 import bgImage from "../Assets/ball-park.jpg";
 import logo from "../Assets/Logo.png";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const SplashContainer = styled.div`
   background-image: url(${bgImage});
@@ -15,7 +17,7 @@ const SplashContainer = styled.div`
 `;
 
 const SplashCard = styled.div`
-  background: #eff3f1;
+  background: #fdfaf6;
   padding: 0 5%;
   height: 70vh;
   display: flex;
@@ -50,13 +52,13 @@ const SplashLink = styled(Link)`
   font-size: 1.4rem;
   font-weight: 600;
   padding: 1rem;
-  background: #f6fbfb;
+  background: white;
   text-align: center;
   text-decoration: none;
   border-radius: 3px;
   color: black;
   margin-bottom: 3%;
-  box-shadow: 3px 2px 5px #5f6b5e;
+  box-shadow: 3px 2px 5px #5c5b59;
   &:hover {
     background: black;
     color: #f6fbfb;
@@ -73,16 +75,28 @@ const SplashLogo = styled.img`
   width: 10%;
 `;
 
+const SplashMain = () => {
+  return (
+    <>
+    <SplashLogo src={logo}/>
+    <SplashHeadline>Secret Recipes</SplashHeadline>
+              <LinkContainer>
+                <SplashLink to="/signup">Sign Up</SplashLink>
+                <SplashLink to="/login">Login</SplashLink>
+    </LinkContainer>
+    </>
+  );
+};
+
 export default function Splash() {
   return (
-    <SplashContainer className='splash' role="img" aria-label="A background image of askew papers by Brandi Redd">
+    <SplashContainer className='splash' role="img" aria-label="A background of hot dogs">
       <SplashCard>
-        <SplashLogo src={logo}/>
-        <SplashHeadline>Secret Recipes</SplashHeadline>
-        <LinkContainer>
-          <SplashLink to="/signup">Sign Up</SplashLink>
-          <SplashLink to="/login">Login</SplashLink>
-        </LinkContainer>
+        <Switch>
+          <Route exact path="/signup" component={Signup}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/" component={SplashMain}/>
+        </Switch>
       </SplashCard>
     </SplashContainer>
   );
