@@ -67,11 +67,8 @@ export default function Dashboard() {
           return (
             <Recipe
               key={recipe.id}
-              category={recipe.category}
-              ingredients={recipe.ingredients}
-              instructions={recipe.instructions}
-              source={recipe.source}
-              title={recipe.title}/>
+              recipe={recipe}
+            />
           );
         })
       }

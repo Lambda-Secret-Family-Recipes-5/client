@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { axiosWithAuth} from '../utils/axiosWithAuth';
 
-const EditRecipe = (props) => {
+const EditRecipe = ({finishEditing, initrecipe}) => {
 
     const StyledAddRecipe = styled.div`
         form {
@@ -41,13 +41,7 @@ const EditRecipe = (props) => {
 	const { push } = useHistory();
 	const { id } = useParams();
 
-	const [recipe, setRecipe] = useState({
-		title:"",
-		source: "",
-		ingredients: "",
-		instructions: "",
-		category: ""
-	});
+	const [recipe, setRecipe] = useState(initrecipe);
 
 	useEffect(()=>{
         axiosWithAuth().get(`recipes/${id}`)
@@ -82,11 +76,9 @@ const EditRecipe = (props) => {
 	const { title, source, ingredients, instructions, category } = recipe;
 
     return (
-	<StyledAddRecipe>
-		<div>
 			<form onSubmit={handleSubmit}>
 				<div>
-					<h1>Adding New Recipe <strong>{recipe.title}</strong></h1>
+					<h4>Edit Recipe</h4>
 				</div>
 				<div>
 					<div>
@@ -113,11 +105,9 @@ const EditRecipe = (props) => {
                 <br/>
 				<div>
 					<button type="submit" value="Save">Submit</button>
-					<Link to={`/recipes/`}><button type="button"  value="Cancel"> Cancel </button></Link>
+        <button onClick={finishEditing}>Cancel</button>
 				</div>
 			</form>
-		</div>
-	</StyledAddRecipe>
     );
 };
 
