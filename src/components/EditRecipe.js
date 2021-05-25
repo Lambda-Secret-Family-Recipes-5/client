@@ -48,7 +48,7 @@ const EditRecipe = (props) => {
 		instructions: "",
 		category: ""
 	});
-	
+
 	useEffect(()=>{
         axiosWithAuth().get(`recipes/${id}`)
             .then(res=>{
@@ -76,19 +76,19 @@ const EditRecipe = (props) => {
       })
       .catch(err=>{
         console.log(err);
-      })
-	}
-	
+      });
+	  };
+
 	const { title, source, ingredients, instructions, category } = recipe;
 
     return (
 	<StyledAddRecipe>
 		<div>
 			<form onSubmit={handleSubmit}>
-				<div>						
+				<div>
 					<h1>Adding New Recipe <strong>{recipe.title}</strong></h1>
 				</div>
-				<div>					
+				<div>
 					<div>
 						<label>Title</label>
 						<input value={title} onChange={handleChange} name="title" type="text"/>
@@ -104,14 +104,14 @@ const EditRecipe = (props) => {
 					<div>
 						<label>Instructions</label>
 						<textarea value={instructions} onChange={handleChange} name="instructions"/>
-					</div>		
+					</div>
 					<div>
 						<label>Category</label>
 						<input value={category} onChange={handleChange} name="category" type="text" />
-					</div>			
+					</div>
 				</div>
                 <br/>
-				<div>			    
+				<div>
 					<button type="submit" value="Save">Submit</button>
 					<Link to={`/recipes/`}><button type="button"  value="Cancel"> Cancel </button></Link>
 				</div>
@@ -119,6 +119,6 @@ const EditRecipe = (props) => {
 		</div>
 	</StyledAddRecipe>
     );
-}
+};
 
 export default EditRecipe;
