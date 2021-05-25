@@ -10,18 +10,18 @@ const formSchema = yup.object().shape({
     .required('Email is required')
     .email('Must be a valid email address'),
 
-  confirmEmail: yup.string()
-    .required('Email confirmation is required')
-    .oneOf([yup.ref('email'), null], 'Emails must match'),
+  // confirmEmail: yup.string()
+  //   .oneOf([yup.ref('email'), null], 'Emails must match')
+  //   .required('Email confirmation is required'),
   
   password: yup.string()
     .trim()
     .required('Password is required')
     .min(5, 'Password must be at least 5 characters long'),
 
-  confirmPass: yup.string()
-    .required('Password confirmation is required')
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+  // confirmPass: yup.string()
+  //   .oneOf([yup.ref('password'), null], 'Passwords must match')
+  //   .required('Password confirmation is required')
 })
 
 export default formSchema
