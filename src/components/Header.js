@@ -80,6 +80,7 @@ export default function Header({searchTerm}){
         <HeaderLink to="/addrecipe">Add Recipe</HeaderLink>
         <HeaderButton onClick={signOut}>Sign Out</HeaderButton>
       </HeaderButtons>
+
     </HeaderContainer>
   );
 };
