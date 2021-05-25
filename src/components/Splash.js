@@ -6,9 +6,6 @@ import logo from "../Assets/Logo.png";
 import Login from "./Login";
 import Signup from "./Signup";
 
-import Login from './Login'
-import Signup from './Signup'
-
 const SplashContainer = styled.div`
   background-image: url(${bgImage});
   background-size: cover;
