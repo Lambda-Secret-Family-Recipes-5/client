@@ -1,20 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import bgImage from "../Assets/brandi-redd.jpg";
 
 const SplashContainer = styled.div`
+  background-image: url(${bgImage});
+  background-size: cover;
   overflow: auto;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SplashCard = styled.div`
+  background: #eff3f1;
+  padding: 0 5%;
+  box-shadow: 8px 7px 7px #13250f;
+  height: 50vh;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SplashHeadline = styled.h1`
   font-size: 6rem;
   font-weight: 100;
   font-family: serif;
+  margin: 0 0 2rem 0;
   @media (max-width: 1200px){
     font-size: 5rem;
   }
@@ -23,20 +37,28 @@ const SplashHeadline = styled.h1`
   }
 `;
 
+const LinkContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
 const SplashLink = styled(Link)`
-  width: 15%;
-  font-size: 1.6rem;
+  font-family: "Courier";
+  width: 20%;
+  font-size: 1.4rem;
+  font-weight: 600;
   padding: 1rem;
-  background: white;
+  background: #f6fbfb;
   text-align: center;
   text-decoration: none;
   border-radius: 3px;
   color: black;
   margin-bottom: 3%;
-  box-shadow: 2px 3px 5px #d0d0d0;
+  box-shadow: 3px 2px 5px #5f6b5e;
   &:hover {
     background: black;
-    color: white;
+    color: #f6fbfb;
     box-shadow: 0 0 0 white;
     border-radius: 5px;
   }
@@ -48,10 +70,15 @@ const SplashLink = styled(Link)`
 
 export default function Splash() {
   return (
-    <SplashContainer className='splash'>
-      <SplashHeadline>Secret Recipes</SplashHeadline>
-      <SplashLink to="/signup">Sign Up</SplashLink>
-      <SplashLink to="/login">Login</SplashLink>
+    <SplashContainer className='splash' role="img" aria-label="A background image of askew papers by Brandi Redd">
+      <SplashCard>
+        <SplashHeadline>Secret Recipes</SplashHeadline>
+        <LinkContainer>
+          <SplashLink to="/signup">Sign Up</SplashLink>
+          <SplashLink to="/login">Login</SplashLink>
+          <SplashLink to="/recipes">Recipes</SplashLink>
+        </LinkContainer>
+      </SplashCard>
     </SplashContainer>
   );
 }
