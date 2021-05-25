@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const DashMain = styled.main`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   padding: 1rem 0;
 `;
@@ -29,6 +29,14 @@ const testingData = [
   },
   {
     key: 2,
+    category: ["asdf"],
+    ingredients: ["chives"],
+    instructions: "asdfjk;asdflk asdfkja asdfjlk",
+    source: " adfkjasdlfjk adf jlkasdflasd j",
+    title: "A Chicken"
+  },
+  {
+    key: 3,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",

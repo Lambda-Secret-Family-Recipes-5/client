@@ -8,6 +8,7 @@ const RecipeCard = styled.div`
   border-radius: 5px;
   padding: 1rem;
   font-family: "Courier";
+  margin-bottom: 1rem;
 `;
 
 const RecipeTitle = styled.h4`
