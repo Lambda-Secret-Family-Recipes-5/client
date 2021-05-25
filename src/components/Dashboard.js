@@ -7,7 +7,7 @@ import bgImage from "../Assets/ball-park.jpg";
 const DashContainer = styled.div`
   background-image: url(${bgImage});
   background-size: cover;
-  height: 100vh;
+  background-attachment: fixed;
 `;
 
 const DashMain = styled.main`
