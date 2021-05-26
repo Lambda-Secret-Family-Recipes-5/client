@@ -74,7 +74,7 @@ export default function Header({searchTerm}){
     axiosWithAuth().post('/logout')
     .then(res=> {
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/";
     })
     .catch(err=> {
       console.log(err);
