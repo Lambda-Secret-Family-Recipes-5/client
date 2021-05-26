@@ -77,14 +77,10 @@ const SplashLogo = styled.img`
 
 const SplashMain = () => {
   return (
-    <>
-    <SplashLogo src={logo}/>
-    <SplashHeadline>Secret Recipes</SplashHeadline>
-              <LinkContainer>
-                <SplashLink to="/signup">Sign Up</SplashLink>
-                <SplashLink to="/login">Login</SplashLink>
+    <LinkContainer>
+      <SplashLink to="/signup">Sign Up</SplashLink>
+      <SplashLink to="/login">Login</SplashLink>
     </LinkContainer>
-    </>
   );
 };
 
@@ -92,11 +88,13 @@ export default function Splash() {
   return (
     <SplashContainer className='splash' role="img" aria-label="A background of hot dogs">
       <SplashCard>
-        <Switch>
-          <Route exact path="/signup" component={Signup}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/" component={SplashMain}/>
-        </Switch>
+        <SplashLogo src={logo}/>
+        <SplashHeadline>Secret Recipes</SplashHeadline>
+          <Switch>
+            <Route exact path="/signup" component={Signup}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/" component={SplashMain}/>
+          </Switch>
       </SplashCard>
     </SplashContainer>
   );

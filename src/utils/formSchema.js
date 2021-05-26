@@ -9,11 +9,15 @@ const formSchema = yup.object().shape({
   email: yup.string()
     .required('Email is required')
     .email('Must be a valid email address'),
+
+  confirmEmail: yup.string(),
   
   password: yup.string()
     .trim()
     .required('Password is required')
     .min(5, 'Password must be at least 5 characters long'),
+
+  confirmPass: yup.string()
 })
 
 export default formSchema
