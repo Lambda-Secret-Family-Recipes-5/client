@@ -36,6 +36,8 @@ export default function Dashboard() {
     }));
   };
 
+  console.log(recipes)
+
   return (
     <DashContainer className='dashboard'>
       <Header searchTerm={searchTerm}/>
