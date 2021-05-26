@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import axios from "axios";
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import Header from './Header';
 import Recipe from './Recipe';
 import bgImage from "../Assets/ball-park.jpg";
@@ -26,17 +27,17 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios.get("https://tt16-secret-recipes.herokuapp.com/api/recipes")
-      .then(res => setRecipes(res.data))
+      .then(res => {
+        console.log(res)
+        setRecipes(res.data)
+      })
       .catch(err => console.log(err));
+    
+    axiosWithAuth()
+      .get('/users')
+      .then( res => console.log(res))
+      .catch( err => console.log(err))
   }, []);
-
-  const changeRecipe = (newRecipe) => {
-    setRecipes(recipes.map((recipe) => {
-      return recipe.id === newRecipe.id ? newRecipe : recipe;
-    }));
-  };
-
-  console.log(recipes)
 
   return (
     <DashContainer className='dashboard'>
@@ -44,12 +45,10 @@ export default function Dashboard() {
       <DashMain>
       {
         recipes.map(recipe => {
-          console.log(recipe.id);
           return (
             <Recipe
               key={recipe.id}
               recipe={recipe}
-              changeRecipe={changeRecipe}
             />
           );
         })

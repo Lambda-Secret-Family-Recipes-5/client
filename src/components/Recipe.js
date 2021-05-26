@@ -56,9 +56,10 @@ const RecipeFieldText = styled.p`
   margin: 0 0 1rem 0.5rem;
 `;
 
-export default function Recipe({recipe, changeRecipe}) {
+export default function Recipe({recipe}) {
 
-  const {id, title, categories, ingredients, instructions, source} = recipe;
+  const {id, title, categories, source, description} = recipe;
+
   return (
     <RecipeCard>
       <div className="recipe-container">
@@ -75,6 +76,8 @@ export default function Recipe({recipe, changeRecipe}) {
         </RecipeList>
         <RecipeFieldTitle>Source: </RecipeFieldTitle>
         <RecipeFieldText>{source}</RecipeFieldText>
+        <RecipeFieldTitle>Description: </RecipeFieldTitle>
+        <RecipeFieldText>{description}</RecipeFieldText>
         <EditLink to={`/recipes/${id}`}>See Recipe</EditLink>
       </div>
     </RecipeCard>
