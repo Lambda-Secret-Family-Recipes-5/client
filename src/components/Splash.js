@@ -13,18 +13,18 @@ const SplashContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const SplashCard = styled.div`
   background: #fdfaf6;
-  padding: 0 5%;
-  height: 70vh;
+  padding: 2% 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  margin-top: 2rem;
 `;
 
 const SplashHeadline = styled.h1`
