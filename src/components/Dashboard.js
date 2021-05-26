@@ -8,6 +8,8 @@ const DashContainer = styled.div`
   background-image: url(${bgImage});
   background-size: cover;
   background-attachment: fixed;
+  height: 100vh;
+  overflow: auto;
 `;
 
 const DashMain = styled.main`
@@ -19,7 +21,7 @@ const DashMain = styled.main`
 
 const testingData = [
   {
-    key: 0,
+    id: 0,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",
@@ -27,7 +29,7 @@ const testingData = [
     title: "A Chicken"
   },
   {
-    key: 1,
+    id: 1,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",
@@ -35,7 +37,7 @@ const testingData = [
     title: "A Chicken"
   },
   {
-    key: 2,
+    id: 2,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",
@@ -43,7 +45,7 @@ const testingData = [
     title: "A Chicken"
   },
   {
-    key: 3,
+    id: 3,
     category: ["asdf"],
     ingredients: ["chives"],
     instructions: "asdfjk;asdflk asdfkja asdfjlk",
@@ -60,7 +62,7 @@ export default function Dashboard() {
 
   const changeRecipe = (newRecipe) => {
     setRecipes(recipes.map((recipe) => {
-      return recipe.key === newRecipe.key ? newRecipe : recipe;
+      return recipe.id === newRecipe.id ? newRecipe : recipe;
     }));
   };
 
