@@ -5,37 +5,39 @@ import styled from 'styled-components';
 import { axiosWithAuth} from '../utils/axiosWithAuth'
 
 const StyledAddRecipe = styled.div`
-form {
-border: 1px solid #999;
-padding: 0.25em;
-background-color: #fdfaf6;
-width: 35%;
-margin: auto;
+
+        form {
+        border: 1px solid #999;
+        padding: 0.25em;
+        background-color: #fdfaf6;
+        width: 35%;
+        margin: auto;
+        }
+        input, textarea{
+        height: 5vh;
+        margin: 1% 0;
+        text-align: left;
+        width: 20em;
+        }
+        label{
+        float: left;
+	    width: 8em;
+	    text-align: left;
+        align-items: center;
+        padding-top: 4%;
+	    padding-right: 0.5em;
+        font-size: 1.2rem;
+        margin: 0 0%;
+        }
+        button{
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 15px;
+        margin: 16px;
 }
-input, textarea{
-height: 5vh;
-margin: 1% 0;
-text-align: left;
-width: 20em;
-}
-label{
-float: left;
-width: 8em;
-text-align: left;
-align-items: center;
-padding-top: 4%;
-padding-right: 0.5em;
-font-size: 1.2rem;
-margin: 0 0%;
-}
-button{
-border: none;
-background-color: black;
-color: white;
-padding: 8px 15px;
-margin: 16px;
-}
-`
+    `
+
 const AddRecipe = (props) => {
 
    

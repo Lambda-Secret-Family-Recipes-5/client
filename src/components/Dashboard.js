@@ -58,6 +58,12 @@ export default function Dashboard() {
   const [recipes, setRecipes] = useState(testingData);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const changeRecipe = (newRecipe) => {
+    setRecipes(recipes.map((recipe) => {
+      return recipe.key === newRecipe.key ? newRecipe : recipe;
+    }));
+  };
+
   return (
     <DashContainer className='dashboard'>
       <Header searchTerm={searchTerm}/>
@@ -67,11 +73,9 @@ export default function Dashboard() {
           return (
             <Recipe
               key={recipe.id}
-              category={recipe.category}
-              ingredients={recipe.ingredients}
-              instructions={recipe.instructions}
-              source={recipe.source}
-              title={recipe.title}/>
+              recipe={recipe}
+              changeRecipe={changeRecipe}
+            />
           );
         })
       }
