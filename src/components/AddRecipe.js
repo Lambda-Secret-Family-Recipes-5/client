@@ -42,25 +42,26 @@ const AddRecipe = (props) => {
 
    
 	const { push } = useHistory();
-	const { id } = useParams();
+	const { user_id } = useParams();
 
 	const [recipe, setRecipe] = useState({
+		user_id:Date.now(),
 		title:"",
 		source: "",
-		ingredients: "",
-		instructions: "",
-		category: ""
+		ingredients: [""],
+		description: "",
+		categories: [""]
 	});
 	
 	useEffect(()=>{
-        axiosWithAuth().post(`/auth/recipe/${id}`)
+        axiosWithAuth().post(`/auth/recipes/${user_id}`)
             .then(res=>{
                 setRecipe(res.data);
             })
             .catch(err=>{
                 console.log(err.res);
             })
-    }, [id]);
+    }, [user_id]);
 
 	const handleChange = (e) => {
         setRecipe({
@@ -71,7 +72,7 @@ const AddRecipe = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-    	axiosWithAuth().post(`/auth/recipe`, recipe)
+    	axiosWithAuth().post(`/auth/recipes`, recipe)
       .then(res=>{
        setRecipe(res.data);
        console.log(res.data)
@@ -82,14 +83,14 @@ const AddRecipe = (props) => {
       })
 	}
 	
-	const { title, source, ingredients, instructions, category } = recipe;
+	const { title, source, ingredients, description, categories } = recipe;
 
     return (
 	<StyledAddRecipe>
 		<div>
 			<form onSubmit={handleSubmit}>
 				<div>						
-					<h1>Adding New Recipe <strong>{recipe.title}</strong></h1>
+					<h1>Adding {recipe.title} Recipe </h1>
 				</div>
 				<div>					
 					<div>
@@ -105,12 +106,12 @@ const AddRecipe = (props) => {
 						<input value={ingredients} onChange={handleChange} name="ingredients" type="text" />
 					</div>
 					<div>
-						<label>Instructions</label>
-						<textarea value={instructions} onChange={handleChange} name="instructions"/>
+						<label>Description</label>
+						<textarea value={description} onChange={handleChange} name="description"/>
 					</div>		
 					<div>
-						<label>Category</label>
-						<input value={category} onChange={handleChange} name="category" type="text" />
+						<label>Categories</label>
+						<input value={categories} onChange={handleChange} name="categories" type="text" />
 					</div>			
 				</div>
                 <br/>
