@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { axiosWithAuth} from '../utils/axiosWithAuth'
 
-const AddRecipe = (props) => {
-
-    const StyledAddRecipe = styled.div`
+const StyledAddRecipe = styled.div`
         form {
         border: 1px solid #999;
         padding: 0.25em;
@@ -38,6 +36,9 @@ const AddRecipe = (props) => {
         margin: 16px;
 }
     `
+
+const AddRecipe = (props) => {
+
 	const { push } = useHistory();
 	const { id } = useParams();
 
