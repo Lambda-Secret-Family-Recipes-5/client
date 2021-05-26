@@ -12,6 +12,7 @@ padding: 0.25em;
 background-color: #fdfaf6;
 width: 32%;
 margin: auto;
+margin-bottom: 7%;
 }
 input{
 height: 5vh;
@@ -37,6 +38,7 @@ padding: 8px 15px;
 margin-top: 16px;
 }
 `
+
 const credentials={
     username: "",
     password: ""
@@ -57,7 +59,7 @@ const Login = () => {
 
   const login = e => {
     e.preventDefault();
-      axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/login', userLogin)
+      axios.post('https://tt16-secret-recipes.herokuapp.com/api/login', userLogin)
   
         .then(res=>{
         localStorage.setItem("token", res.data.payload);
@@ -72,9 +74,8 @@ const Login = () => {
   return (
     <StyledLogin>
       <div data-testid="loginForm" className="login">
-        <h2>Login</h2>
-
         <form onSubmit={login}>
+        <h2>Login</h2>
           <label>Username:  </label>
           <input
             type="text"
@@ -94,8 +95,7 @@ const Login = () => {
           />
           
           <button>Login</button>
-        </form>
-
+        </form> 
       </div>
     </StyledLogin>
   );
