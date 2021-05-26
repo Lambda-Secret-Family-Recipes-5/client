@@ -51,7 +51,7 @@ const AddRecipe = (props) => {
 	});
 	
 	useEffect(()=>{
-        axiosWithAuth().post(`/auth/recipes/${id}`)
+        axiosWithAuth().post(`/auth/recipe/${id}`)
             .then(res=>{
                 setRecipe(res.data);
             })
@@ -69,7 +69,7 @@ const AddRecipe = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-    	axiosWithAuth().post(`/auth/recipes`, recipe)
+    	axiosWithAuth().post(`/auth/recipe`, recipe)
       .then(res=>{
        setRecipe(res.data);
        console.log(res.data)
