@@ -73,22 +73,9 @@ export default function Recipe({recipe, changeRecipe}) {
             })
           }
         </RecipeList>
-        {/* {Uncomment these when the api is done and we have those fields} */}
-        {/* <RecipeList> */}
-        {/*   <li className="list-title">Ingredients:</li> */}
-        {/*   { */}
-        {/*     ingredients.map(ingredient => { */}
-        {/*       return ( */}
-        {/*         <li>{ingredient}</li> */}
-        {/*       ); */}
-        {/*     }) */}
-        {/*   } */}
-        {/* </RecipeList> */}
-        {/* <RecipeFieldTitle>Instructions: </RecipeFieldTitle> */}
-        {/* <RecipeFieldText>{instructions}</RecipeFieldText> */}
         <RecipeFieldTitle>Source: </RecipeFieldTitle>
         <RecipeFieldText>{source}</RecipeFieldText>
-        <EditLink to={`/editrecipe/${id}`}>Edit Recipe</EditLink>
+        <EditLink to={`/recipes/${id}`}>See Recipe</EditLink>
       </div>
     </RecipeCard>
   );
