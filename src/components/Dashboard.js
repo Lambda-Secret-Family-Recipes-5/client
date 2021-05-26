@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import axios from "axios";
 import Header from './Header';
 import Recipe from './Recipe';
 import bgImage from "../Assets/ball-park.jpg";
@@ -8,6 +9,8 @@ const DashContainer = styled.div`
   background-image: url(${bgImage});
   background-size: cover;
   background-attachment: fixed;
+  height: 100vh;
+  overflow: auto;
 `;
 
 const DashMain = styled.main`
@@ -17,50 +20,19 @@ const DashMain = styled.main`
   padding: 1rem 0;
 `;
 
-const testingData = [
-  {
-    key: 0,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    key: 1,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    key: 2,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    key: 3,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  }
-];
-
-
-
 export default function Dashboard() {
-  const [recipes, setRecipes] = useState(testingData);
+  const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    axios.get("https://tt16-secret-recipes.herokuapp.com/api/recipes")
+      .then(res => setRecipes(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const changeRecipe = (newRecipe) => {
     setRecipes(recipes.map((recipe) => {
-      return recipe.key === newRecipe.key ? newRecipe : recipe;
+      return recipe.id === newRecipe.id ? newRecipe : recipe;
     }));
   };
 
@@ -70,6 +42,7 @@ export default function Dashboard() {
       <DashMain>
       {
         recipes.map(recipe => {
+          console.log(recipe.id);
           return (
             <Recipe
               key={recipe.id}
