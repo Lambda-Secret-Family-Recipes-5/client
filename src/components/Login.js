@@ -59,7 +59,7 @@ const Login = () => {
 
   const login = e => {
     e.preventDefault();
-      axios.post('https://tt16-secret-recipes.herokuapp.com/api/login', userLogin)
+      axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/login', userLogin)
   
         .then(res=>{
         localStorage.setItem("token", res.data.payload);
