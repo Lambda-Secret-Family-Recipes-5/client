@@ -47,7 +47,7 @@ const RecipeList = styled.ul`
 
 const RecipeFieldTitle = styled.p`
   font-weight: 600;
-  margin: 0
+  margin: 0;
 `;
 
 const RecipeFieldText = styled.p`
