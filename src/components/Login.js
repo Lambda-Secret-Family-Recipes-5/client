@@ -3,41 +3,70 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
 const StyledLogin = styled.div`
+
+.login {
+width: 100%;
+}
+h2 {
+  text-align: center;
+  font-family: serif;
+  margin: 0 0 1rem;
+}
+
 form {
-border: 1px solid #999;
-padding: 0.25em;
-background-color: #fdfaf6;
-width: 32%;
-margin: auto;
-margin-bottom: 7%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 1rem;
 }
-input{
-height: 5vh;
-margin: 1% 0;
-text-align: left;
-width: 20em;
+
+label {
+  font-weight: bold;
+  font-size: large;
+  text-align: left;
 }
-label{
-float: left;
-width: 8em;
-text-align: left;
-align-items: center;
-padding-top: 4%;
-padding-right: 0.5em;
-font-size: 1.2rem;
-margin: 0 0%;
+
+input {
+  width: 97%;
+  height: 30px;
+  font-size: large;
+  border: 2px solid #981f09;
 }
-button{
-border: none;
-background-color: black;
-color: white;
-padding: 8px 15px;
-margin-top: 16px;
+
+p {
+  color: red;
+  font-style: italic;
+  margin-top: 0%;
+  text-align: left;
 }
-`
+
+/* button:disabled {
+   height: 30px;
+   border: none;
+   background-color: #981f09;
+   color: white;
+   opacity: 50%;
+}  */
+
+button {
+  margin-top: 10px;
+}
+
+button:enabled {
+  height: 30px;
+  border: none;
+  background-color: #981f09;
+  color: white;
+  transition: .2s;
+}
+
+button:enabled:hover {
+  background-color: white;
+  color: #981f09;
+}
+`;
 
 const credentials={
     username: "",
@@ -74,18 +103,18 @@ const Login = () => {
   return (
     <StyledLogin>
       <div data-testid="loginForm" className="login">
-        <form onSubmit={login}>
         <h2>Login</h2>
-          <label>Username:  </label>
-          <input
-            type="text"
-            name="username"
-            data-testid="username"
-            value={userLogin.username}
-            onChange={handleChange}
-          />
-         
-          <label>Password: </label>
+        <form onSubmit={login}>
+          <label>Username
+            <input
+              type="text"
+              name="username"
+              data-testid="username"
+              value={userLogin.username}
+              onChange={handleChange}
+            />
+          </label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
