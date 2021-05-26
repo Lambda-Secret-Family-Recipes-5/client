@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { axiosWithAuth} from '../utils/axiosWithAuth';
 
-const EditRecipe = ({finishEditing, initrecipe}) => {
+const EditRecipe = ({finishEditing, initrecipe, update}) => {
 
     const StyledAddRecipe = styled.div`
         form {
@@ -38,20 +38,7 @@ const EditRecipe = ({finishEditing, initrecipe}) => {
         margin: 16px;
 }
     `;
-	const { push } = useHistory();
-	const { id } = useParams();
-
-	const [recipe, setRecipe] = useState(initrecipe);
-
-	useEffect(()=>{
-        axiosWithAuth().get(`recipes/${id}`)
-            .then(res=>{
-                setRecipe(res.data);
-            })
-            .catch(err=>{
-                console.log(err.res);
-            });
-    }, [id]);
+	const [recipe, setRecipe] = useState({...initrecipe});
 
 	const handleChange = (e) => {
         setRecipe({
@@ -61,16 +48,18 @@ const EditRecipe = ({finishEditing, initrecipe}) => {
   };
 
     const handleSubmit = (e) => {
-		e.preventDefault();
-    	axiosWithAuth().put(`/recipes/${id}`, recipe)
-      .then(res=>{
-        setRecipe(res.data);
-        console.log(res.data);
-        push(`/recipes`);
-      })
-      .catch(err=>{
-        console.log(err);
-      });
+		  e.preventDefault();
+      update(recipe);
+      finishEditing();
+    	// axiosWithAuth().put(`/recipes/${id}`, recipe)
+      // .then(res=>{
+      //   setRecipe(res.data);
+      //   console.log(res.data);
+      //   push(`/recipes`);
+      // })
+      // .catch(err=>{
+      //   console.log(err);
+      // });
 	  };
 
 	const { title, source, ingredients, instructions, category } = recipe;
@@ -104,7 +93,7 @@ const EditRecipe = ({finishEditing, initrecipe}) => {
 				</div>
                 <br/>
 				<div>
-					<button type="submit" value="Save">Submit</button>
+					<button>Submit</button>
         <button onClick={finishEditing}>Cancel</button>
 				</div>
 			</form>

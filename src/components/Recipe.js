@@ -54,7 +54,7 @@ const RecipeFieldText = styled.p`
   margin: 0 0 1rem 0.5rem;
 `;
 
-export default function Recipe({recipe}) {
+export default function Recipe({recipe, changeRecipe}) {
   const [editing, setEditing] = useState(false);
 
   const editRecipe = () => {
@@ -65,7 +65,7 @@ export default function Recipe({recipe}) {
   return (
     <RecipeCard>
       {editing ?
-       <EditRecipe finishEditing={editRecipe} initrecipe={recipe} /> :
+       <EditRecipe finishEditing={editRecipe} initrecipe={recipe} update={changeRecipe}/> :
     (
       <div className="recipe-container">
         <RecipeTitle>{title}</RecipeTitle>
