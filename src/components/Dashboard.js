@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import axios from "axios";
 import Header from './Header';
 import Recipe from './Recipe';
 import bgImage from "../Assets/ball-park.jpg";
@@ -19,46 +20,15 @@ const DashMain = styled.main`
   padding: 1rem 0;
 `;
 
-const testingData = [
-  {
-    id: 0,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    id: 1,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    id: 2,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  },
-  {
-    id: 3,
-    category: ["asdf"],
-    ingredients: ["chives"],
-    instructions: "asdfjk;asdflk asdfkja asdfjlk",
-    source: " adfkjasdlfjk adf jlkasdflasd j",
-    title: "A Chicken"
-  }
-];
-
-
-
 export default function Dashboard() {
-  const [recipes, setRecipes] = useState(testingData);
+  const [recipes, setRecipes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    axios.get("https://tt16-secret-recipes.herokuapp.com/api/recipes")
+      .then(res => setRecipes(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const changeRecipe = (newRecipe) => {
     setRecipes(recipes.map((recipe) => {
