@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
         headers: {
             authorization: token
         },
-        baseURL: 'https://secret-family-recipes-5.herokuapp.com'
+        baseURL: 'https://tt16-secret-recipes.herokuapp.com/api'
     });
 }

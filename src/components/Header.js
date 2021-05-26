@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import styled from "styled-components";
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const HeaderContainer = styled.header`
   background: #fdfaf6;
@@ -70,7 +71,14 @@ const HeaderButton = styled.button`
 
 export default function Header({searchTerm}){
   const signOut = () => {
-    
+    axiosWithAuth().post('/logout')
+    .then(res=> {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    })
+    .catch(err=> {
+      console.log(err);
+    })
   };
 
   return (

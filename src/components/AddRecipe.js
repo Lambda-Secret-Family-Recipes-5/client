@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { axiosWithAuth} from '../utils/axiosWithAuth'
 
 const StyledAddRecipe = styled.div`
+
         form {
         border: 1px solid #999;
         padding: 0.25em;
@@ -39,6 +40,7 @@ const StyledAddRecipe = styled.div`
 
 const AddRecipe = (props) => {
 
+   
 	const { push } = useHistory();
 	const { id } = useParams();
 
@@ -51,7 +53,7 @@ const AddRecipe = (props) => {
 	});
 	
 	useEffect(()=>{
-        axiosWithAuth().post(`recipes/${id}`)
+        axiosWithAuth().post(`/auth/recipe/${id}`)
             .then(res=>{
                 setRecipe(res.data);
             })
@@ -69,7 +71,7 @@ const AddRecipe = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-    	axiosWithAuth().post(`recipes`, recipe)
+    	axiosWithAuth().post(`/auth/recipe`, recipe)
       .then(res=>{
        setRecipe(res.data);
        console.log(res.data)
