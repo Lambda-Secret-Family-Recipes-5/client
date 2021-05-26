@@ -42,6 +42,7 @@ export default function Dashboard() {
       <DashMain>
       {
         recipes.map(recipe => {
+          console.log(recipe.id);
           return (
             <Recipe
               key={recipe.id}

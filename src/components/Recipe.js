@@ -58,7 +58,7 @@ const RecipeFieldText = styled.p`
 
 export default function Recipe({recipe, changeRecipe}) {
 
-  const {key, title, categories, ingredients, instructions, source} = recipe;
+  const {id, title, categories, ingredients, instructions, source} = recipe;
   return (
     <RecipeCard>
       <div className="recipe-container">
@@ -88,7 +88,7 @@ export default function Recipe({recipe, changeRecipe}) {
         {/* <RecipeFieldText>{instructions}</RecipeFieldText> */}
         <RecipeFieldTitle>Source: </RecipeFieldTitle>
         <RecipeFieldText>{source}</RecipeFieldText>
-        <EditLink to={`/editrecipe/${key}`}>Edit Recipe</EditLink>
+        <EditLink to={`/editrecipe/${id}`}>Edit Recipe</EditLink>
       </div>
     </RecipeCard>
   );
