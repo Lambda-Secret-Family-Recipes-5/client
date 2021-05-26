@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
 const StyledLogin = styled.div`
 form {
 border: 1px solid #999;
@@ -35,11 +37,11 @@ padding: 8px 15px;
 margin-top: 16px;
 }
 `
-
 const credentials={
     username: "",
     password: ""
   }
+
 
 const Login = () => {
   const { push } = useHistory();
@@ -55,8 +57,8 @@ const Login = () => {
 
   const login = e => {
     e.preventDefault();
-    
-      axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/login',userLogin)
+      axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/login', userLogin)
+  
         .then(res=>{
         localStorage.setItem("token", res.data.payload);
           push('/recipes');

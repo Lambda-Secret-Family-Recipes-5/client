@@ -6,17 +6,13 @@ import formSchema from '../utils/formSchema'
 const initialFormValues = {
   username: '',
   email: '',
-  confirmEmail: '',
   password: '',
-  confirmPass: '',
 }
 
 const initialFormErrors = {
   username: '',
   email: '',
-  confirmEmail: '',
   password: '',
-  confirmPass: '',
 }
 
 export default function Signup(props) {
