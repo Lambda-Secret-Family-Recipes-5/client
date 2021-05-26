@@ -6,17 +6,13 @@ import formSchema from '../utils/formSchema'
 const initialFormValues = {
   username: '',
   email: '',
-  confirmEmail: '',
   password: '',
-  confirmPass: '',
 }
 
 const initialFormErrors = {
   username: '',
   email: '',
-  confirmEmail: '',
   password: '',
-  confirmPass: '',
 }
 
 export default function Signup(props) {
@@ -75,7 +71,7 @@ export default function Signup(props) {
       password: formValues.password.trim(),
     }
 
-    axios.post('https://secret-family-recipes-5.herokuapp.com/auth/register', newUser)
+    axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/register', newUser)
       .then( res => {
         console.log(res)
         props.history.push('/login')
