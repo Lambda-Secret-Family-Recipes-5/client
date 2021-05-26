@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import EditRecipe from "./EditRecipe";
 import styled from "styled-components";
 
@@ -6,7 +7,7 @@ const RecipeCard = styled.div`
   background: #fdfaf6;
   width: 28%;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 1rem 1rem 1.5rem;
   font-family: "Courier";
   margin-bottom: 1rem;
 `;
@@ -16,16 +17,17 @@ const RecipeTitle = styled.h4`
   font-family: serif;
 `;
 
-const EditButton = styled.button`
+const EditLink = styled(Link)`
   background: white;
   border: 0;
   border-radius: 3px;
-  box-shadow: 3px 2px 5px #5c5b59;
+  box-shadow: 3px 2px 4px #5c5b59;
   color: black;
   font-family: courier;
   font-weight: 600;
+  font-size: 1rem;
   padding: 0.5rem;
-  cursor: pointer;
+  text-decoration: none;
   &:hover {
     background: black;
     box-shadow: 0 0 0 white;
@@ -55,18 +57,10 @@ const RecipeFieldText = styled.p`
 `;
 
 export default function Recipe({recipe, changeRecipe}) {
-  const [editing, setEditing] = useState(false);
 
-  const editRecipe = () => {
-    setEditing(!editing);
-  };
-
-  const {title, category, ingredients, instructions, source} = recipe;
+  const {key, title, category, ingredients, instructions, source} = recipe;
   return (
     <RecipeCard>
-      {editing ?
-       <EditRecipe finishEditing={editRecipe} initrecipe={recipe} update={changeRecipe}/> :
-    (
       <div className="recipe-container">
         <RecipeTitle>{title}</RecipeTitle>
         <RecipeList>
@@ -93,9 +87,8 @@ export default function Recipe({recipe, changeRecipe}) {
         <RecipeFieldText>{instructions}</RecipeFieldText>
         <RecipeFieldTitle>Source: </RecipeFieldTitle>
         <RecipeFieldText>{source}</RecipeFieldText>
-        <EditButton onClick={editRecipe}>Edit Recipe</EditButton>
+        <EditLink to={`/editrecipe/${key}`}>Edit Recipe</EditLink>
       </div>
-    )}
     </RecipeCard>
   );
 };
