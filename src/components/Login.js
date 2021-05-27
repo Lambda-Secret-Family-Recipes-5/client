@@ -91,7 +91,7 @@ const Login = () => {
       axios.post('https://tt16-secret-recipes.herokuapp.com/api/auth/login', userLogin)
   
         .then(res=>{
-        localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.token);
           push('/recipes');
         })
           .catch(err=>{
