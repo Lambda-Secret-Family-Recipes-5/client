@@ -266,28 +266,6 @@ const AddRecipe = (props) => {
 						  <textarea value={currStep.instructions} onChange={handleStep} name="instructions" type="text" placeholder="Instructions"/>
               <button onClick={submitStep}>Add Step</button>
 					  </div>	
-					  <div>
-						  {/* { moreSteps ? <> */}
-							{/*                 <select value={recipe.steps.step_number} name="step_number" onChange={handleChange} > */}
-            	{/* 			            <option value="">-- Steps --</option> */}
-            	{/* 			            <option value="1">1</option> */}
-            	{/* 			            <option value="2">2</option> */}
-            	{/* 			            <option value="3">3</option> */}
-							{/*                   <option value="4">4</option> */}
-            	{/* 			            <option value="5">5</option> */}
-            	{/* 			            <option value="6">6</option> */}
-							{/*                   <option value="7">7</option> */}
-            	{/* 			            <option value="8">8</option> */}
-            	{/* 			            <option value="9">9</option> */}
-          		{/* 		            </select><br/> */}
-							{/*                 {/\* <input value={steps} onChange={handleChange} name="step_number" type="text" placeholder="Steps" /><br/> *\/} */}
-							{/*                 <textarea value={recipe.steps.instructions} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/> */}
-							{/*               </> */}
-							{/*   : ""} */}
-						</div>
-						<div>
-						  {/* <Link onClick={toggleSteps}>Add More Steps</Link> */}
-						</div>	
 				  </div>
           <br/>
 				  <div>			    
