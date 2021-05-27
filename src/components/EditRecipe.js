@@ -44,7 +44,7 @@ const StyledAddRecipe = styled.div`
 }
     `
 
-const AddRecipe = ({initRecipe}) => {
+const EditRecipe = ({initRecipe}) => {
 
 	const { push } = useHistory();
 	const { id } = useParams();
@@ -141,12 +141,12 @@ const AddRecipe = ({initRecipe}) => {
 		const newRecipe = {
 			title: recipe.title.trim(),
 			source: recipe.source.trim(),
-			ingredients: recipe.ingredients.trim(),
+			ingredients: recipe.ingredients,
 			description: recipe.description.trim(),
-			categories: recipe.categories.trim(),
-			steps: recipe.steps.trim(),
+			categories: recipe.categories,
+			steps: recipe.steps,
 		  }
-    	axiosWithAuth().post(`/recipes`, newRecipe)
+    	axiosWithAuth().put(`/recipes/${id}`, newRecipe)
       		.then(res=>{
        			setRecipe(res.data);
        			console.log(res.data)
@@ -260,7 +260,7 @@ const AddRecipe = ({initRecipe}) => {
           <br/>
 				  <div>			    
 					  <button type="submit" value="Save">Submit</button>
-					  <Link to={`/recipes/`}><button type="button"  value="Cancel"> Cancel </button></Link>
+					  <Link to={`/recipes/${recipe.id}`}><button type="button"  value="Cancel"> Cancel </button></Link>
 				  </div>
 			  </form>
 		  </div>
@@ -268,4 +268,4 @@ const AddRecipe = ({initRecipe}) => {
   );
 }
 
-export default AddRecipe;
+export default EditRecipe;
