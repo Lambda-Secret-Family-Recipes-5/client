@@ -40,14 +40,19 @@ export default function Dashboard() {
       .catch( err => console.log(err))
   }, []);
 
+  console.log(recipes)
+  console.log(searchTerm)
+
   return (
     <DashContainer className='dashboard'>
-      <Header search={setSearchTerm}/>
+      <Header search={searchTerm} setSearch={setSearchTerm}/>
       <DashMain>
         <Switch>
           <Route exact path="/recipes">
             {
-              recipes.map(recipe => {
+              recipes.filter(recipe => {
+                return recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+              }).map(recipe => {
                 return (
                   <Recipe
                     key={recipe.id}

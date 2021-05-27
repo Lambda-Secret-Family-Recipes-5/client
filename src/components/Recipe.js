@@ -127,11 +127,12 @@ export default function Recipe({recipe, expanded, setEditing}) {
           </RecipeList>
         )}
 
-
         {expanded ?
          <button onClick={(e) => setEditing(true)}>Edit Recipe</button> :
          <button disabled={disabled} onClick={editHandler}>See Recipe</button>}
+
         {disabled && <p>You do not have access to this recipe</p>}
+        
       </div>
     </RecipeCard>
   );
