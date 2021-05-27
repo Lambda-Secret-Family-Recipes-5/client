@@ -46,30 +46,23 @@ const StyledAddRecipe = styled.div`
 
 const AddRecipe = (props) => {
 
-	const initialRecipeValues ={
-	id:"",
-	title:"",
-	source: "",
-	ingredients:[{
-				id:Date.now(),
-				name:"", 
-				quantity:"", 
-				unit:""
-			}],
-	description: "",
-	categories: [""],
-	steps: [{step_number:"", 
-			instructions:""
-			}],
-		}
-
    
 	const { push } = useHistory();
 	const { id } = useParams();
 
-	const [recipe, setRecipe] = useState(initialRecipeValues);
+	const [recipe, setRecipe] = useState({
+		id:Date.now(),
+		title:"",
+		source: "",
+		ingredients:"",
+		description: "",
+		categories: [""],
+		steps: ({step_number:"", 
+				instructions:""
+				}),
+	});
 	const [moreIngredients, setMoreIngredients] = useState(false);
-	const [moreSteps, setMoreSteps] = useState(false);
+	const [moresteps, setMoreSteps] = useState(false);
 
 	
 	useEffect(()=>{
@@ -91,23 +84,14 @@ const AddRecipe = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const newRecipe = {
-			title: recipe.title.trim(),
-			source: recipe.source.trim(),
-			ingredients: recipe.ingredients.trim(),
-			description: recipe.description.trim(),
-			categories: recipe.categories.trim(),
-			steps: recipe.steps.trim(),
-		  }
-    	axiosWithAuth().post(`/recipes`, newRecipe)
-      		.then(res=>{
-       			setRecipe(res.data);
-       			console.log(res.data)
-        	push(`/recipes`);
-      	})
-      		.catch(err=>{
-        		console.log(err);
+    	axiosWithAuth().post(`/recipes`, recipe)
+      .then(res=>{
+       setRecipe(res.data);
+       console.log(res.data)
+        push(`/recipes`);
+      })
+      .catch(err=>{
+        console.log(err);
       })
 	}
 
@@ -117,37 +101,39 @@ const AddRecipe = (props) => {
 	  };
 	const toggleSteps = e => {
 		e.preventDefault();
-		setMoreSteps(!moreSteps);
+		setMoreSteps(!moresteps);
 	  };
+	
+	const { title, source, ingredients, description, steps, categories } = recipe;
 
     return (
 	<StyledAddRecipe>
 		<div>
 			<form onSubmit={handleSubmit}>
 				<div>						
-					<h1>Adding {recipe.title} Recipe </h1>
+					<h1>Adding {title} Recipe </h1>
 				</div>
 				<div>					
 					<div>
 						<label>Title</label>
-						<input value={recipe.title} onChange={handleChange} name="title" type="text" placeholder="Title"/>
+						<input value={title} onChange={handleChange} name="title" type="text" placeholder="Title"/>
 					</div>
 					<div>
 						<label>Source</label>
-						<input value={recipe.source} onChange={handleChange} name="source" type="text" placeholder="Source"/>
+						<input value={source} onChange={handleChange} name="source" type="text" placeholder="Source"/>
 					</div>
 					<div>
 						<label>Category</label>
-						<input value={recipe.categories} onChange={handleChange} name="categories" type="text" placeholder="Categories" />
+						<input value={categories} onChange={handleChange} name="categories" type="text" placeholder="Categories" />
 					</div>
 					<div>
 						<label>Description</label>
-						<textarea value={recipe.description} onChange={handleChange} name="description" placeholder="Description"/>
+						<textarea value={description} onChange={handleChange} name="description" placeholder="Description"/>
 					</div>		
 					<div>
 						<label>Ingredients</label>
-						<input value={recipe.ingredients.name} onChange={handleChange} name="name" type="text" placeholder="Ingredient Name" />
-						<select value={recipe.ingredients.quantity} name="quantity" onChange={handleChange} >
+						<input value={ingredients} onChange={handleChange} name="name" type="text" placeholder="Name" />
+						<select value={ingredients} name="quantity" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Quantity --</option>
             				<option value="1">1</option>
             				<option value="2">2</option>
@@ -159,21 +145,18 @@ const AddRecipe = (props) => {
             				<option value="8">8</option>
             				<option value="9">9</option>
           				</select>
-						  <select value={recipe.ingredients.unit} name="unit" onChange={handleChange} >
+						  <select value={ingredients} name="unit" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Unit --</option>
             				<option value="cup">Cup</option>
             				<option value="package">Package</option>
-							<option value="cube">Cube</option>
-							<option value="sachet">Sachet</option>
-							<option value="cup">Cup</option>
-          				</select>s
+          				</select>
 						{/* <input value={ingredients} onChange={handleChange} name="quantity" type="text" placeholder="quantity"/>
 						<input value={ingredients} onChange={handleChange} name="unit" type="text" placeholder="unit"/>s */}
 					</div><br/>
 					<div>
 					{ moreIngredients && <>
-					  <input value={recipe.name} onChange={handleChange} name="name" type="text" placeholder="Ingredient Name" />
-					  <select value={recipe.ingredients.quantity} name="quantity" onChange={handleChange}>
+					  <input value={ingredients} onChange={handleChange} name="name" type="text" placeholder="name" />
+					  <select value={ingredients} name="quantity" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Quantity --</option>
             				<option value="1">1</option>
             				<option value="2">2</option>
@@ -185,14 +168,11 @@ const AddRecipe = (props) => {
             				<option value="8">8</option>
             				<option value="9">9</option>
           				</select>
-						  <select value={recipe.ingredients.unit} name="unit" onChange={handleChange} >
+						  <select value={ingredients} name="unit" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Unit --</option>
             				<option value="cup">Cup</option>
             				<option value="package">Package</option>
-							<option value="cube">Cube</option>
-							<option value="sachet">Sachet</option>
-							<option value="cup">Cup</option>
-          				</select>s
+          				</select>
 						{/* <input value={ingredients} onChange={handleChange} name="quantity" type="text" placeholder="quantity"/>
 						<input value={ingredients} onChange={handleChange} name="unit" type="text" placeholder="unit"/>s */}
 						</>
@@ -202,7 +182,7 @@ const AddRecipe = (props) => {
 					</div>	<br/>
 					<div>
 						<label>Steps</label>
-						<select value={recipe.steps.step_number} name="step_number" onChange={handleChange} >
+						<select value={steps} name="step_number" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Steps --</option>
             				<option value="1">1</option>
             				<option value="2">2</option>
@@ -215,11 +195,11 @@ const AddRecipe = (props) => {
             				<option value="9">9</option>
           				</select><br/>
 						{/* <input value={steps} onChange={handleChange} name="step_number" type="text" placeholder="Steps" /><br/> */}
-						<textarea value={recipe.steps.instructions} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/>
+						<textarea value={steps} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/>
 					</div>	
 					 <div>
-						{ moreSteps ? <>
-							<select value={recipe.steps.step_number} name="step_number" onChange={handleChange} >
+						{ moresteps ? <>
+							<select value={steps} name="step_number" onChange={handleChange} id="size-dropdown">
             				<option value="">-- Steps --</option>
             				<option value="1">1</option>
             				<option value="2">2</option>
@@ -232,7 +212,7 @@ const AddRecipe = (props) => {
             				<option value="9">9</option>
           				</select><br/>
 							{/* <input value={steps} onChange={handleChange} name="step_number" type="text" placeholder="Steps" /><br/> */}
-							<textarea value={recipe.steps.instructions} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/>
+							<textarea value={steps} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/>
 							</>
 							: ""}
 						</div>
