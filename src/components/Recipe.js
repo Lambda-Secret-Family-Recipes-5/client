@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EditRecipe from "./EditRecipe";
 import styled from "styled-components";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const RecipeCard = styled.div`
   background: #fdfaf6;
@@ -58,20 +57,11 @@ const RecipeFieldText = styled.p`
 `;
 
 export default function Recipe({recipe}) {
-  const [disabled, setDisabled] = useState(false);
-
-  const { push } = useHistory()
 
   const {
     id, title, categories, source, description,
     ingredients, steps, contributor
   } = recipe;
-
-  const editHandler = (event) => {
-    axiosWithAuth().get(`/recipes/${id}`)
-      .then(res => push(`/recipes/${id}`))
-      .catch(err => setDisabled(true));
-  };
 
   return (
     <RecipeCard>
@@ -127,9 +117,7 @@ export default function Recipe({recipe}) {
           </RecipeList>
         )}
 
-
-        <button disabled={disabled} onClick={editHandler}>See Recipe</button>
-        {disabled && <p>You do not have access to this recipe</p>}
+        <EditLink to={`/recipes/${id}`}>See Recipe</EditLink>
       </div>
     </RecipeCard>
   );
