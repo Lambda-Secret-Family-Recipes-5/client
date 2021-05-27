@@ -15,7 +15,7 @@ const SeeRecipe = (props) => {
     axiosWithAuth()
       .get(`/recipes/${id}`)
       .then( res => {
-        console.log(res)
+        setRecipe(res.data);
       })
       .catch( err => {
         console.log(err)
