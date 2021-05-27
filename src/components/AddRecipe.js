@@ -78,13 +78,10 @@ const AddRecipe = (props) => {
       ingredients: [...recipe.ingredients, newIngredient]
     });
   };
-  const addStep = (newStepInstructions) => {
+  const addStep = (newStep) => {
     setRecipe({
       ...recipe,
-      steps: [...recipe.steps, {
-        step_number: recipe.steps.length,
-        instructions: newStepInstructions
-      }]
+      steps: [...recipe.steps, newStep]
     });
   };
   const addCategory = (category) => {
@@ -130,6 +127,22 @@ const AddRecipe = (props) => {
   const submitIngredient = (e) => {
     e.preventDefault();
     addIngredient(currIngredient);
+  };
+
+  const handleStep = (e) => {
+    setCurrStep({
+      ...currStep,
+      instructions: e.target.value
+    });
+  };
+
+  const submitStep = (e) => {
+    e.preventDefault();
+    addStep(currStep);
+    setCurrStep({
+      step_number: (currStep.step_number + 1),
+      instructions: ""
+    });
   };
 
   const handleSubmit = (e) => {
@@ -234,21 +247,24 @@ const AddRecipe = (props) => {
               <button onClick={submitIngredient}>Add Ingredient</button>
 					  </div><br/>
 					  <div>
-						  <label>Steps</label>
-						  <select value={recipe.steps.step_number} name="step_number" onChange={handleChange} >
-            		<option value="">-- Steps --</option>
-            		<option value="1">1</option>
-            		<option value="2">2</option>
-            		<option value="3">3</option>
-							  <option value="4">4</option>
-            		<option value="5">5</option>
-            		<option value="6">6</option>
-							  <option value="7">7</option>
-            		<option value="8">8</option>
-            		<option value="9">9</option>
-          		</select><br/>
-						  {/* <input value={steps} onChange={handleChange} name="step_number" type="text" placeholder="Steps" /><br/> */}
-						  <textarea value={recipe.steps.instructions} onChange={handleChange} name="instructions" type="text" placeholder="Instructions"/>
+              {
+                (recipe.steps.length !== 0) &&
+                  <>
+                    <h4>Current Steps: </h4>
+                    <ul>
+                      { recipe.steps.map(step => {
+                        return (
+                          <>
+                            <li>{`${step.step_number}: ${step.instructions}`}</li>
+                          </>
+                        );})
+                      }
+                    </ul>
+                  </>
+              }
+						  <label>Add Step</label>
+						  <textarea value={currStep.instructions} onChange={handleStep} name="instructions" type="text" placeholder="Instructions"/>
+              <button onClick={submitStep}>Add Step</button>
 					  </div>	
 					  <div>
 						  {/* { moreSteps ? <> */}
