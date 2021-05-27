@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
+
 import styled from "styled-components";
 import bgImage from "../Assets/ball-park.jpg";
 import logo from "../Assets/Logo.png";
+import title from '../Assets/Title.png'
+
 import Login from "./Login";
 import Signup from "./Signup";
 
@@ -27,18 +30,18 @@ const SplashCard = styled.div`
   margin-top: 2rem;
 `;
 
-const SplashHeadline = styled.h1`
-  font-size: 6rem;
-  font-weight: 100;
-  font-family: serif;
-  margin: 0 0 2rem 0;
-  @media (max-width: 1200px){
-    font-size: 5rem;
-  }
-  @media (max-width: 800px){
-    font-size: 2.5rem;
-  }
-`;
+// const SplashHeadline = styled.h1`
+//   font-size: 6rem;
+//   font-weight: 100;
+//   font-family: serif;
+//   margin: 0 0 2rem 0;
+//   @media (max-width: 1200px){
+//     font-size: 5rem;
+//   }
+//   @media (max-width: 800px){
+//     font-size: 2.5rem;
+//   }
+// `;
 
 const LinkContainer = styled.div`
   width: 100%;
@@ -57,6 +60,7 @@ const SplashLink = styled(Link)`
   text-decoration: none;
   border-radius: 3px;
   color: black;
+  margin-top: 2%;
   margin-bottom: 3%;
   box-shadow: 3px 2px 5px #5c5b59;
   &:hover {
@@ -75,6 +79,11 @@ const SplashLogo = styled.img`
   width: 10%;
 `;
 
+const SplashTitle = styled.img`
+  width: 60%;
+  margin: 20px auto;
+`
+
 const SplashMain = () => {
   return (
     <LinkContainer>
@@ -89,7 +98,7 @@ export default function Splash() {
     <SplashContainer className='splash' role="img" aria-label="A background of hot dogs">
       <SplashCard>
         <SplashLogo src={logo}/>
-        <SplashHeadline>Secret Recipes</SplashHeadline>
+        <SplashTitle src={title}/>
           <Switch>
             <Route exact path="/signup" component={Signup}/>
             <Route exact path="/login" component={Login}/>
