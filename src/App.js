@@ -17,7 +17,6 @@ function App() {
           <EditRecipe/>
         </Route>
         <Route path='/addrecipe' component={AddRecipe} />
-        <PrivateRoute path='/recipes/:id' component={SeeRecipe} />
         <PrivateRoute path='/recipes' component={Dashboard} />
         <Route path='/' component={Splash} />
       </Switch>

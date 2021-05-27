@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import Header from './Header';
 import Recipe from './Recipe';
+import SeeRecipe from "./SeeRecipe";
 import bgImage from "../Assets/ball-park.jpg";
 
 const DashContainer = styled.div`
@@ -43,16 +45,23 @@ export default function Dashboard() {
     <DashContainer className='dashboard'>
       <Header searchTerm={searchTerm}/>
       <DashMain>
-      {
-        recipes.map(recipe => {
-          return (
-            <Recipe
-              key={recipe.id}
-              recipe={recipe}
-            />
-          );
-        })
-      }
+        <Switch>
+          <Route exact path="/recipes">
+            {
+              recipes.map(recipe => {
+                return (
+                  <Recipe
+                    key={recipe.id}
+                    recipe={recipe}
+                  />
+                );
+              })
+            }
+          </Route>
+          <Route path="/recipes/:id">
+            <SeeRecipe/>
+          </Route>
+        </Switch>
       </DashMain>
     </DashContainer>
   );

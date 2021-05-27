@@ -58,7 +58,10 @@ const RecipeFieldText = styled.p`
 
 export default function Recipe({recipe}) {
 
-  const {id, title, categories, source, description} = recipe;
+  const {
+    id, title, categories, source, description,
+    ingredients, steps, image_url, contributor
+  } = recipe;
 
   return (
     <RecipeCard>

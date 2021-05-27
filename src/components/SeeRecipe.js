@@ -3,9 +3,10 @@ import { useParams, useHistory } from 'react-router-dom'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import styled from 'styled-components'
 
-import Header from './Header'
+import Recipe from "./Recipe";
 
-const SeeRecipe = () => {
+
+const SeeRecipe = (props) => {
   const [recipe, setRecipe] = useState(null)
 
   const { id } = useParams()
@@ -22,10 +23,9 @@ const SeeRecipe = () => {
   }, [])
 
   return (
-    <div>
-      <Header />
-      
-    </div>
+    <>
+    { recipe && <Recipe recipe={recipe}/>}
+    </>
   )
 }
 
