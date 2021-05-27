@@ -120,6 +120,18 @@ const AddRecipe = (props) => {
     addCategory(currCategory);
   };
 
+  const handleIngredient = (e) => {
+    setCurrIngredient({
+      ...currIngredient,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const submitIngredient = (e) => {
+    e.preventDefault();
+    addIngredient(currIngredient);
+  };
+
   const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -173,30 +185,45 @@ const AddRecipe = (props) => {
                     </ul>
                   </>
               }
-						  <label>Add Category</label>
-						  <input value={currCategory} onChange={handleCategory} name="categories" type="text" placeholder="Categories" />
+						  <input value={currCategory} onChange={handleCategory} name="categories" type="text" placeholder="New Category" />
               <button onClick={submitCategory}>Add Category</button>
 					  </div>
 					  <div>
 						  <label>Description</label>
 						  <textarea value={recipe.description} onChange={handleChange} name="description" placeholder="Description"/>
-					  </div>		
+					  </div>
 					  <div>
-						  <label>Ingredients</label>
-						  <input value={recipe.ingredients.name} onChange={handleChange} name="name" type="text" placeholder="Ingredient Name" />
-						  <select value={recipe.ingredients.quantity} name="quantity" onChange={handleChange} >
-            		<option value="">-- Quantity --</option>
-            		<option value="1">1</option>
-            		<option value="2">2</option>
-            		<option value="3">3</option>
-							  <option value="4">4</option>
-            		<option value="5">5</option>
-            		<option value="6">6</option>
-							  <option value="7">7</option>
-            		<option value="8">8</option>
-            		<option value="9">9</option>
-          		</select>
-						  <select value={recipe.ingredients.unit} name="unit" onChange={handleChange} >
+              {
+                (recipe.ingredients.length !== 0) &&
+                  <>
+                    <h4>Current Ingredients: </h4>
+                    <ul>
+                      { recipe.ingredients.map(ingredient => {
+                        return (
+                          <>
+                            <li>Name: {ingredient.name}</li>
+                            <li>Quantity: {ingredient.quantity}</li>
+                            <li>Unit: {ingredient.unit}</li>
+                            <br/>
+                          </>
+                        );
+                      })}
+                    </ul>
+                  </>
+              }
+						  <label>Add Ingredient</label>
+						  <input
+                value={currIngredient.name}
+                onChange={handleIngredient}
+                name="name"
+                type="text"
+                placeholder="Ingredient Name" />
+              <input
+                value={currIngredient.quantity}
+                onChange={handleIngredient}
+                type="number"
+                name="quantity"/>
+						  <select value={currIngredient.unit} name="unit" onChange={handleIngredient} >
             		<option value="">-- Unit --</option>
             		<option value="cup">Cup</option>
             		<option value="package">Package</option>
@@ -204,39 +231,8 @@ const AddRecipe = (props) => {
 							  <option value="sachet">Sachet</option>
 							  <option value="cup">Cup</option>
           		</select>s
-						  {/* <input value={ingredients} onChange={handleChange} name="quantity" type="text" placeholder="quantity"/>
-						     <input value={ingredients} onChange={handleChange} name="unit" type="text" placeholder="unit"/>s */}
+              <button onClick={submitIngredient}>Add Ingredient</button>
 					  </div><br/>
-					  <div>
-					    { /* moreIngredients && <> */
-					      /*   <input value={recipe.name} onChange={handleChange} name="name" type="text" placeholder="Ingredient Name" /> */
-					      /*   <select value={recipe.ingredients.quantity} name="quantity" onChange={handleChange}> */
-            		/* 		<option value="">-- Quantity --</option> */
-            		/* 		<option value="1">1</option> */
-            		/* 		<option value="2">2</option> */
-            		/* 		<option value="3">3</option> */
-							  /*     <option value="4">4</option> */
-            		/* 		<option value="5">5</option> */
-            		/* 		<option value="6">6</option> */
-							  /*     <option value="7">7</option> */
-            		/* 		<option value="8">8</option> */
-            		/* 		<option value="9">9</option> */
-          			/* 	</select> */
-						    /*   <select value={recipe.ingredients.unit} name="unit" onChange={handleChange} > */
-            		/* 		<option value="">-- Unit --</option> */
-            		/* 		<option value="cup">Cup</option> */
-            		/* 		<option value="package">Package</option> */
-							  /*     <option value="cube">Cube</option> */
-							  /*     <option value="sachet">Sachet</option> */
-							  /*     <option value="cup">Cup</option> */
-          			/* 	</select>s */
-						    /*   {/\* <input value={ingredients} onChange={handleChange} name="quantity" type="text" placeholder="quantity"/> */
-						    /*      <input value={ingredients} onChange={handleChange} name="unit" type="text" placeholder="unit"/>s *\/} */
-						    /* </> */
-						  }</div>
-					  <div>
-					    {/* <Link onClick={toggleIngredients}>Add New Ingredients</Link> */}
-					  </div>	<br/>
 					  <div>
 						  <label>Steps</label>
 						  <select value={recipe.steps.step_number} name="step_number" onChange={handleChange} >
