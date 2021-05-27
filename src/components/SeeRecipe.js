@@ -26,7 +26,7 @@ const SeeRecipe = () => {
   return (
     <>
       {editing ?
-       <EditRecipe initRecipe={recipe}/> :
+       <EditRecipe setEditing={setEditing} initRecipe={recipe}/> :
        <>
          { recipe && <Recipe recipe={recipe} expanded={true} setEditing={setEditing}/>}
        </>
