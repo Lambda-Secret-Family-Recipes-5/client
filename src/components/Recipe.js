@@ -59,6 +59,7 @@ const RecipeFieldText = styled.p`
 
 export default function Recipe({recipe, expanded, setEditing}) {
   const [disabled, setDisabled] = useState(false);
+  const [confirm, setConfirm] = useState(false)
 
   const { push } = useHistory()
 
@@ -67,14 +68,39 @@ export default function Recipe({recipe, expanded, setEditing}) {
     ingredients, steps, contributor
   } = recipe;
 
+  const navHandler = () => {
+    push('/recipes')
+  }
+
   const editHandler = (event) => {
     axiosWithAuth().get(`/recipes/${id}`)
       .then(res => push(`/recipes/${id}`))
       .catch(err => setDisabled(true));
   };
 
+  const confirmHandler = () => {
+    setConfirm(!confirm)
+  }
+
+  const deleteHandler = () => {
+    axiosWithAuth()
+      .delete(`/recipes/${id}`)
+      .then(res => {
+        console.log(res)
+        push('/recipes')
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <RecipeCard>
+      <div>
+        {
+          expanded &&
+          <button onClick={navHandler}>Back to Recipes</button>
+        }
+      </div>
+      <br />
       <div className="recipe-container">
         <RecipeTitle>{title}</RecipeTitle>
         <RecipeList>
@@ -127,9 +153,26 @@ export default function Recipe({recipe, expanded, setEditing}) {
           </RecipeList>
         )}
 
-        {expanded ?
-         <button onClick={(e) => setEditing(true)}>Edit Recipe</button> :
-         <button disabled={disabled} onClick={editHandler}>See Recipe</button>}
+        {
+          expanded 
+          
+          ?
+          <>
+            <button onClick={(e) => setEditing(true)}>Edit Recipe</button>
+            <button onClick={confirmHandler} >{confirm? 'Cancel Delete' : 'Delete Recipe'}</button>
+            {
+              confirm &&
+              <>
+                <p className='confirmation'>Are you sure? This cannot be undone.</p>
+                <button onClick={deleteHandler}>Yes</button>
+                <button onClick={confirmHandler}>No</button>
+              </>
+            }
+          </> 
+          
+          :
+          <button disabled={disabled} onClick={editHandler}>See Recipe</button>
+        }
 
         {disabled && <p>You do not have access to this recipe</p>}
         

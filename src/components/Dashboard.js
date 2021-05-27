@@ -40,9 +40,6 @@ export default function Dashboard() {
       .catch( err => console.log(err))
   }, []);
 
-  console.log(recipes)
-  console.log(searchTerm)
-
   return (
     <DashContainer className='dashboard'>
       <Header search={searchTerm} setSearch={setSearchTerm}/>

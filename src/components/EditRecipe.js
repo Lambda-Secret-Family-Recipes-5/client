@@ -44,20 +44,20 @@ const StyledAddRecipe = styled.div`
 }
     `
 
-const EditRecipe = ({initRecipe}) => {
+const EditRecipe = (props) => {
+  const { setEditing, initRecipe } = props
 
 	const { push } = useHistory();
 	const { id } = useParams();
 
 	const [recipe, setRecipe] = useState(initRecipe);
 	const [currIngredient, setCurrIngredient] = useState({
-    id: Date.now(),
     name: "",
     quantity: 0,
     unit: ""
   });
 	const [currStep, setCurrStep] = useState({
-    step_number: recipe.steps.length,
+    step_number: (recipe.steps.length + 1),
     instructions: ""
   });
   const [currCategory, setCurrCategory] = useState("");
@@ -122,6 +122,7 @@ const EditRecipe = ({initRecipe}) => {
   const handleStep = (e) => {
     setCurrStep({
       ...currStep,
+      step_number: (recipe.steps.length + 1),
       instructions: e.target.value
     });
   };
@@ -129,16 +130,13 @@ const EditRecipe = ({initRecipe}) => {
   const submitStep = (e) => {
     e.preventDefault();
     addStep(currStep);
-    setCurrStep({
-      step_number: (currStep.step_number + 1),
-      instructions: ""
-    });
   };
 
   const handleSubmit = (e) => {
 		e.preventDefault();
 
 		const newRecipe = {
+      user_id: initRecipe.id,
 			title: recipe.title.trim(),
 			source: recipe.source.trim(),
 			ingredients: recipe.ingredients,
@@ -146,18 +144,18 @@ const EditRecipe = ({initRecipe}) => {
 			categories: recipe.categories,
 			steps: recipe.steps,
 		  }
+
     	axiosWithAuth().put(`/recipes/${id}`, newRecipe)
       		.then(res=>{
-       			setRecipe(res.data);
-       			console.log(res.data)
-        	push(`/recipes`);
+            setRecipe(res.data)
+            setEditing(false)
+        	push(`/recipes/${id}`);
       	})
       		.catch(err=>{
         		console.log(err);
       })
 	}
 
-  console.log(recipe);
   return (
 	  <StyledAddRecipe>
 		  <div>
