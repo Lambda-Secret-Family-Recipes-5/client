@@ -30,7 +30,6 @@ export default function Dashboard() {
   useEffect(() => {
     axios.get("https://tt16-secret-recipes.herokuapp.com/api/recipes")
       .then(res => {
-        console.log(res)
         setRecipes(res.data)
       })
       .catch(err => console.log(err));
@@ -43,7 +42,7 @@ export default function Dashboard() {
 
   return (
     <DashContainer className='dashboard'>
-      <Header searchTerm={searchTerm}/>
+      <Header search={setSearchTerm}/>
       <DashMain>
         <Switch>
           <Route exact path="/recipes">

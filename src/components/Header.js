@@ -69,10 +69,10 @@ const HeaderButton = styled.button`
   }
 `;
 
-export default function Header({searchTerm}){
+export default function Header({search}){
   const signOut = () => {
     axiosWithAuth().post('/logout')
-    .then(res=> {
+    .then(()=> {
       localStorage.removeItem("token");
       window.location.href = "/";
     })
@@ -83,7 +83,7 @@ export default function Header({searchTerm}){
 
   return (
     <HeaderContainer>
-      <Search searchTerm={searchTerm}/>
+      <Search search={search}/>
       <HeaderButtons>
         <HeaderLink to="/addrecipe">Add Recipe</HeaderLink>
         <HeaderButton onClick={signOut}>Sign Out</HeaderButton>
