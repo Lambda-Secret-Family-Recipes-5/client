@@ -57,6 +57,7 @@ export default function Dashboard() {
                   <Recipe
                     key={recipe.id}
                     recipe={recipe}
+                    expanded={false}
                   />
                 );
               })

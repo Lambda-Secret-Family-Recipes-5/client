@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Recipe from "./Recipe";
+import EditRecipe from "./EditRecipe";
 
 
 const SeeRecipe = () => {
   const [recipe, setRecipe] = useState(null)
+  const [editing, setEditing] = useState(false);
   const { id } = useParams()
 
   useEffect(() => {
@@ -23,7 +25,13 @@ const SeeRecipe = () => {
 
   return (
     <>
-    { recipe && <Recipe recipe={recipe}/>}
+      {editing ?
+       <EditRecipe initRecipe={recipe}/> :
+       <>
+         { recipe && <Recipe recipe={recipe} expanded={true} setEditing={setEditing}/>}
+       </>
+      }
+
     </>
   )
 }

@@ -57,7 +57,7 @@ const RecipeFieldText = styled.p`
   margin: 0 0 1rem 0.5rem;
 `;
 
-export default function Recipe({recipe}) {
+export default function Recipe({recipe, expanded, setEditing}) {
   const [disabled, setDisabled] = useState(false);
 
   const { push } = useHistory()
@@ -127,10 +127,10 @@ export default function Recipe({recipe}) {
           </RecipeList>
         )}
 
-        {
-          !steps &&
-          <button disabled={disabled} onClick={editHandler}>See Recipe</button>
-        }
+        {expanded ?
+         <button onClick={(e) => setEditing(true)}>Edit Recipe</button> :
+         <button disabled={disabled} onClick={editHandler}>See Recipe</button>}
+
         {disabled && <p>You do not have access to this recipe</p>}
         
       </div>
