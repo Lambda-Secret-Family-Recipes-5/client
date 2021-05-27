@@ -60,7 +60,7 @@ export default function Recipe({recipe}) {
 
   const {
     id, title, categories, source, description,
-    ingredients, steps, image_url, contributor
+    ingredients, steps, contributor
   } = recipe;
 
   return (
@@ -77,10 +77,46 @@ export default function Recipe({recipe}) {
             })
           }
         </RecipeList>
-        <RecipeFieldTitle>Source: </RecipeFieldTitle>
-        <RecipeFieldText>{source}</RecipeFieldText>
+
         <RecipeFieldTitle>Description: </RecipeFieldTitle>
         <RecipeFieldText>{description}</RecipeFieldText>
+
+        <RecipeFieldTitle>Source: </RecipeFieldTitle>
+        <RecipeFieldText>{source}</RecipeFieldText>
+
+        <RecipeFieldTitle>Contributor: </RecipeFieldTitle>
+        <RecipeFieldText>{contributor}</RecipeFieldText>
+
+        {ingredients && (
+          <RecipeList>
+            <li className="list-title">Ingredients:</li>
+            {
+              ingredients.map(ingredient => {
+                return (
+                  <>
+                    <li>name: {ingredient.name}</li>
+                    <li>quantity: {ingredient.quantity}</li>
+                    <li>unit: {ingredient.unit}</li>
+                  </>
+                );
+              })
+            }
+          </RecipeList>
+        )}
+
+        {steps && (
+          <RecipeList>
+            <li className="list-title">Steps:</li>
+            {
+              steps.map(step => {
+                return (
+                  <li>{step.step_number}: {step.instructions}</li>
+                );
+              })
+            }
+          </RecipeList>
+        )}
+
         <EditLink to={`/recipes/${id}`}>See Recipe</EditLink>
       </div>
     </RecipeCard>
