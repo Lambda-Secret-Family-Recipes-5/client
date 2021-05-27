@@ -127,9 +127,12 @@ export default function Recipe({recipe}) {
           </RecipeList>
         )}
 
-
-        <button disabled={disabled} onClick={editHandler}>See Recipe</button>
+        {
+          !steps &&
+          <button disabled={disabled} onClick={editHandler}>See Recipe</button>
+        }
         {disabled && <p>You do not have access to this recipe</p>}
+        
       </div>
     </RecipeCard>
   );

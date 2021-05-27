@@ -69,7 +69,9 @@ const HeaderButton = styled.button`
   }
 `;
 
-export default function Header({search}){
+export default function Header(props){
+  const { search, setSearch } = props
+
   const signOut = () => {
     axiosWithAuth().post('/logout')
     .then(()=> {
@@ -83,7 +85,7 @@ export default function Header({search}){
 
   return (
     <HeaderContainer>
-      <Search search={search}/>
+      <Search search={search} setSearch={setSearch} />
       <HeaderButtons>
         <HeaderLink to="/addrecipe">Add Recipe</HeaderLink>
         <HeaderButton onClick={signOut}>Sign Out</HeaderButton>

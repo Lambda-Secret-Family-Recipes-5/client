@@ -151,11 +151,12 @@ const AddRecipe = (props) => {
 		const newRecipe = {
 			title: recipe.title.trim(),
 			source: recipe.source.trim(),
-			ingredients: recipe.ingredients.trim(),
+			ingredients: recipe.ingredients,
 			description: recipe.description.trim(),
-			categories: recipe.categories.trim(),
-			steps: recipe.steps.trim(),
+			categories: recipe.categories,
+			steps: recipe.steps,
 		  }
+      
     	axiosWithAuth().post(`/recipes`, newRecipe)
       		.then(res=>{
        			setRecipe(res.data);
