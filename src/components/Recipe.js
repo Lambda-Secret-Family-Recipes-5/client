@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import EditRecipe from "./EditRecipe";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -60,6 +60,8 @@ const RecipeFieldText = styled.p`
 export default function Recipe({recipe}) {
   const [disabled, setDisabled] = useState(false);
 
+  const { push } = useHistory()
+
   const {
     id, title, categories, source, description,
     ingredients, steps, contributor
@@ -67,7 +69,7 @@ export default function Recipe({recipe}) {
 
   const editHandler = (event) => {
     axiosWithAuth().get(`/recipes/${id}`)
-      .then(res => window.history.push(`/recipes/${id}`))
+      .then(res => push(`/recipes/${id}`))
       .catch(err => setDisabled(true));
   };
 
