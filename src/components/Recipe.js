@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import EditRecipe from "./EditRecipe";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -18,23 +17,6 @@ const RecipeTitle = styled.h4`
   font-family: serif;
 `;
 
-const EditLink = styled(Link)`
-  background: white;
-  border: 0;
-  border-radius: 3px;
-  box-shadow: 3px 2px 4px #5c5b59;
-  color: black;
-  font-family: courier;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.5rem;
-  text-decoration: none;
-  &:hover {
-    background: black;
-    box-shadow: 0 0 0 white;
-    color: #fdfaf6;
-  }
-`;
 
 const RecipeList = styled.ul`
   padding: 0;

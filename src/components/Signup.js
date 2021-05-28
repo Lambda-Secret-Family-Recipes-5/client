@@ -126,7 +126,7 @@ export default function Signup(props) {
         password !== confirmPass
       )
     })
-  }, [formValues])
+  })
 
   const handleSubmit = e => {
     e.preventDefault()

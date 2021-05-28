@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
 
 import Recipe from "./Recipe";
 import EditRecipe from "./EditRecipe";
@@ -21,7 +20,7 @@ const SeeRecipe = () => {
       .catch( err => {
         console.log(err)
       })
-  }, [])
+  })
 
   return (
     <>

@@ -5,7 +5,6 @@ import Splash from './components/Splash'
 import Dashboard from './components/Dashboard'
 import AddRecipe from './components/AddRecipe'
 import EditRecipe from './components/EditRecipe'
-import SeeRecipe from './components/SeeRecipe'
 import PrivateRoute from './utils/PrivateRoute'
 
 
