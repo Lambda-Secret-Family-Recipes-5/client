@@ -30,11 +30,9 @@ const SeeRecipe = () => {
          { recipe && <Recipe recipe={recipe} expanded={true} setEditing={setEditing}/>}
        </>
       }
-
     </>
   )
 }
-
 export default SeeRecipe
 
 

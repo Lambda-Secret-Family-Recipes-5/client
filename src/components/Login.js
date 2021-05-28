@@ -42,14 +42,6 @@ p {
   text-align: left;
 }
 
-/* button:disabled {
-   height: 30px;
-   border: none;
-   background-color: #981f09;
-   color: white;
-   opacity: 50%;
-}  */
-
 button {
   margin-top: 10px;
 }

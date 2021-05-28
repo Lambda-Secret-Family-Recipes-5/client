@@ -30,19 +30,6 @@ const SplashCard = styled.div`
   margin-top: 2rem;
 `;
 
-// const SplashHeadline = styled.h1`
-//   font-size: 6rem;
-//   font-weight: 100;
-//   font-family: serif;
-//   margin: 0 0 2rem 0;
-//   @media (max-width: 1200px){
-//     font-size: 5rem;
-//   }
-//   @media (max-width: 800px){
-//     font-size: 2.5rem;
-//   }
-// `;
-
 const LinkContainer = styled.div`
   width: 100%;
   display: flex;
